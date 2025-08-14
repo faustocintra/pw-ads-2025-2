@@ -19,3 +19,20 @@ console.log("situação do aluno:", situacao)
 resultado = media2 >= 6?'Aprovado':'Reprovado'
 // resultado = condição ? resultado de verdadeiro : resultado de falso
 console.log("situação do aluno:", resultado)
+
+/*--------------------------------------------------*/
+
+let user = 'guest', msg
+
+//decidindo se o usuário pode entrar, usando if..else
+/* quando há apenas uma linha após um if, um while, etc.., podemos omitir chaves */
+
+if(user === 'admin') msg = 'bem vindo'
+else msg = 'acesso negado'
+
+console.log(user, msg)
+
+//tomando a mesma decisão, mas usando o operador ternário
+msg = user === 'admin' ? 'bem vindo' : 'acesso negado'
+
+console.log(user,msg)
