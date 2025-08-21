@@ -16,3 +16,15 @@ const [c1, c2, c3] = carros
 */
 
 console.log(c1, c2, c3)
+
+// desestruturação parcial: 1° e 3° valores
+const [x, y] = carros
+console.log('Primeiro e segundo carros: ', {x,y})
+
+//desestruturação parcial: 1° e 3° valores
+const [a, ,b] = carros
+console.log('Primeiro e terceiro carro: ', {a,b})
+
+//desestruturação parcial: 2° e  3° valores
+const [, m, n] = carros
+console.log('Segundo e terceiro carros: ', {m, n})
