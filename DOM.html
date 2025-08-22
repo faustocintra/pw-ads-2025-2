@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 22/08 - DOM</title>
+    
+</head>
+
+<body>
+    <!-- A div = "root" será usada posteriormente com o react -->
+    <div id="root"></div>
+
+    <script>
+        /*
+        DOM significa Document Object Model. Refere-se ao modelo como a linguagem JavaScript interage com os elementos HTML e consegue manipulá-los.
+        */
+
+        //Criando um novo parágrafo no documento usando JS
+        const parag = document.createElement('p');
+        parag.innerHTML = '<b>Este parágrafo foi criado usando JavaScript.</b>';
+
+        //Captura o elemento correspondente a um "root"
+        const root = document.getElementById('root');
+        root.appendChild(parag); // Faz com que o o parágrafo seja "adotado" pelo elemento (div) root
+    </script>
+</body>
+
+</html>
