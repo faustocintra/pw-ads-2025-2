@@ -10,3 +10,5 @@
 9. Na caixa de diálogo que se abre no alto da janela, cole o endereço do repositório copiado no passo 6.
 10. Escolha um pasta local do computador para armazenar os arquivos do repositório clonado.
 11. Ao ser perguntado se deseja abrir o repositório clonado, clique sobre o botão <code>[Abrir]</code>.
+
+-- codeshare.io/faustocintra
