@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.formata{
+            font-family: Consolas, monospace;
+            color: blue;
+            background: powderblue;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 2px solid blue;
+            border-radius: 8px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+     <!-- scripts com react importados -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // div criada com React "cru"
+        const div1 = React.createElement(
+            'div',
+            {
+                id: 'div1',
+                className: 'formata'
+            },
+            'Div criada com react "cru"'
+        )
+
+        // div criada com sintaze JSX, a qual será processada pelo Babel e transpilada para Javascript puro
+        const div2 = <div id="div2" className='formata'>Div criada com JSX</div>
+
+        // container
+        const container = React.createElement(
+            'div',
+            {
+                id: 'container',
+                children: [div1, div2]
+            }
+        )
+
+        // capturando a div root para fazer dela nosso de inserção
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+
+        // renderizando o container com seus filhos
+        root.render(container)
+
+        // o jsx é uma forma de usar o react de forma mais rápida (é uma derivação do javascript)
+        // o babel traduz a sintaxe jsx em javascript
+    </script>
+</body>
+</html>
