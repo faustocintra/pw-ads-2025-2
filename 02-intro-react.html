@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.formata{
+            font-family: Consolas, monospace;
+            background: rgb(209, 209, 209);
+            text-align: center;
+            margin-bottom: 15px;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
+
+    <div id = "root">
+
+    </div>
+
+    <script>
+        // Criando uma DIV com React "cru"
+        const div1 = React.createElement(
+            'div',                      // Tipo de elemento a ser criado
+            {                           // Atributos do elemento
+                id: 'div1',
+                className: 'formata'
+            },
+            'DIV criada com react "cru"'    // Conteúdo interno do elemento
+        )
+
+        // Criando o ponto de inserção do novo elemento no DOM
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+
+        // Em React, os atributos de u elemento são chamados PROPS.
+        // Eles podem ser definidos previamente em um objeto e depois usados em React.createElement|()
+        const propsBotao = {
+            id: 'botao1',
+            style: {
+                color: 'black',
+                background: 'red',
+            },
+            children: 'Clique aqui!',
+            onClick: () => alert('Olá!')
+        }
+
+        // Note que, desta vez, não temos o terceiro parâmetros para definir o conteúdo inteiro do elemento
+        // Em vez disso, usamos uma prop especial chamada "children", que tem a mesma função
+        const b1 = React.createElement('button', propsBotao)
+
+        // Criando um elemento de forma rápida, sem props, apenas com o texto interno
+        const parag = React.createElement('p', null, 'Parágrafo básico')
+
+        // Criando um container para exibir os outros elementos dentro dele
+        const container = React.createElement(
+            'div',
+            {
+                id: 'Container',
+                children: [div1, b1, parag], // Os elementos criados serão children do container
+                style: {
+                    border: '1px dotted red',
+                    padding: '20px'
+                }
+            }
+        )
+        
+        // Renderizando a container com os demais elementos dentro dele
+        root.render(container)
+    </script>
+</body>
+</html>
