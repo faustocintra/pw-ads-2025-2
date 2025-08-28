@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div.formata {
+      font-family: Consolas, monospace;
+      color: blue;
+      background: powderblue;
+      text-align: center;
+      margin-bottom: 15px;
+      border: 2px solid blue;
+      border-radius: 8px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    // Div criada com React "cru"
+    const div1 = React.createElement(
+      'div',
+      {
+        id: 'div1',
+        className: 'formata'
+      },
+      'DIV criada com React "cru"'
+    )
+
+    // DIV criada com a sintaxe JSX, a qual será processada pelo Babel
+    // e transpilada para JavaScript puro
+    const div2 = <div id="div2" className="formata">DIV criada com JSX</div>
+
+    // Container
+    const container = React.createElement(
+      'div',
+      {
+        id: 'container',
+        children: [div1, div2]
+      }
+    )
+
+    // Capturando a div root para fazer dela nosso ponto de inserção
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+
+    // Renderizando o container com seus filhos
+    root.render(container)
+
+  </script>
+</body>
+</html>
