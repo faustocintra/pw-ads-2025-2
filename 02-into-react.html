@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 28/08 - Introdução ao React</title>
+    <style>
+        .formata {
+            font-family: Consolas, monospace;
+            background: rgb(209, 209, 209);
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 0px 8px 0px 8px;
+            padding: 10px;
+        }
+
+        .formata:hover{
+            background: rgb(219, 143, 143);
+        }
+
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
+
+    <div id="root"></div>
+
+    <script>
+        //Criando uma div com React cru
+        const div1 = React.createElement(
+            'div',
+            {
+                id:'div1',
+                className: 'formata'
+            },
+            'Div criada com React Cru!'
+        )
+
+        //Criando Ponto de inserção do novo elemento no DOM
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        //root.render(div1);
+
+        const propsBotao = {
+            id: 'botao1',
+            style: {
+                color: 'red',
+                background:'yellow',
+                cursor: 'pointer',
+                padding: '10px',
+                border: '3px solid black',
+                borderRadius: '8px 0px 8px 0px',
+                textAlign: 'center',
+                display: 'block',
+                margin: '20px auto',
+            },
+            children:'Clique Aqui!',
+            onClick: () => alert('Olá, motherFucker!')
+        }
+        /*Note que, desta vez, não temos o terceiro parâmetro para definir o conteúdo interno do elemento. Em vez disso, estamos usando a propriedade children no objeto de propriedades.*/
+        const b1 = React.createElement(
+            'button',
+            propsBotao,
+        )
+        //root.render(b1);
+
+        const parag = React.createElement('p', null, 'Parágrafo Básico')
+
+        //Criando um container para exibir os outros elementos
+        const container = React.createElement(
+            'div',
+            {
+                id: 'container',
+                children: [div1, b1, parag],
+                style:{
+                    border:'1px dotted red',
+                    padding: '20px',
+                    textAlign: 'center'
+                }
+            },
+        );
+        root.render(container);
+    </script>
+</body>
+</html>

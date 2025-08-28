@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula 22/08 - DOM</title>
-    
 </head>
 
 <body>
@@ -24,6 +23,20 @@
         //Captura o elemento correspondente a um "root"
         const root = document.getElementById('root');
         root.appendChild(parag); // Faz com que o o parágrafo seja "adotado" pelo elemento (div) root
+
+        //Criando uma nova div e ajustando seus atributos
+        const novaDiv = document.createElement('div');
+
+        novaDiv.textContent = 'Esta é uma nova div criada com JavaScript.';
+        novaDiv.style.border = '3px dotted green';
+        novaDiv.style.backgroundColor = 'lightgreen';
+        novaDiv.style.padding = '10px';
+        novaDiv.style.marginTop = '50px';
+        novaDiv.style.textAlign = 'center';
+        novaDiv.id = 'div-verde';
+
+        //Fazendo com que a div root 'adote' a nova div
+        root.appendChild(novaDiv);
     </script>
 </body>
 

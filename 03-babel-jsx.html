@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 28/08 - Babel e Jsx - React</title>
+    <style>
+        .formata {
+            font-family: Consolas, monospace;
+            background: rgb(209, 209, 209);
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 0px 8px 0px 8px;
+            padding: 10px;
+        }
+
+        .formata:hover{
+            background:linear-gradient(to right, rgb(255, 92, 92), rgb(255, 255, 255), rgb(34,211,56));
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <script type="text/babel">
+        //Criando uma div com React cru
+        const div1 = React.createElement(
+            'div',
+            {
+                id:'div1',
+                className: 'formata',
+                style: {
+                    marginBottom: '20px'
+                }
+            },
+            'Div criada com React Cru!'
+        )
+
+        //DIV Criada com a sintaxe JSX
+        const div2 = <div id="div2" className="formata">Div criada com JSX!</div>;
+
+        //Container
+        const container = React.createElement(
+            'div',
+            {
+                id: 'container',
+                children: [div1, div2],
+                style:{
+                    border:'1px dotted red',
+                    padding: '20px',
+                    textAlign: 'center'
+                }
+            },
+        );
+
+        //Capturando a Div = 'root'
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(container);
+    </script>
+</body>
+</html>
