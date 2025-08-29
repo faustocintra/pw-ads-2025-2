@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .msg{
+            background-color: khaki;
+            border-radius: 4px;
+            border: 8px solid red;
+            padding: 10px;
+            text-align: center;
+            font-family: Calibri, sans;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Importando o react -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <div id = "root"></div>
+
+    <script type="text/babel">
+
+        // PROPS GENÉRICAS E PROPS PERSONALIZADAS:
+        // uma função de componente React pode receber dois tipos de props:
+        // 1° Props GENÉRICAS: são passados por meio de um único objeto e normalmente são aplicados
+        // no componente por meio de espalhamento
+        // 2° Props PERSONALIZADAS: são passadas nominalmente à função. Somente as props nomeadas
+        // são processadas dentro do componente
+
+        // function Mensagem (props){
+        //     return <div className="msg" {...props} />
+        // }
+
+        const Mensagem = props => <div className= "msg" {...props} />
+
+        const propsMsg1 = {
+            id: 'msg1',
+            title: 'Primeira mensagem',
+            children: 'Cuidado com a escada',
+            propFicticia: 'teste'
+        }
+
+        const container = 
+        <>
+            <Mensagem {...propsMsg1} />
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+
+        root.render(container)
+    </script>
+</body>
+</html>
