@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .cor1{
+      border-radius: 4px;
+      border: 2px solid greenyellow;
+      background-color: azure;
+      padding: 10px;
+      font-family: Calibri, sans;
+      margin-bottom: 16px;
+      color: brown;
+      text-align: center;
+      text-decoration-color: blue;
+      }
+      .cor2{
+      border-radius: 4px;
+      color: blue;
+      text-decoration-color: blueviolet;
+      border: 2px solid lightcoral;
+      background-color: khaki;
+      padding: 10px;
+      font-family: Calibri, sans;
+      margin-bottom: 16px;
+      text-align: center;
+      }
+      .cor3{
+      border-radius: 4px;
+      text-decoration-color: violet;
+      border: 2px solid grey;
+      background-color: rgb(140, 203, 240);
+      padding: 10px;
+      font-family: Calibri, sans;
+      margin-bottom: 16px;
+      text-align: center;
+      }
+    </style>
+</head>
+<body>
+     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const Parag1 = ({nome, sobrenome}) =>
+    <p className= "cor1" nome = {nome} sobrenome = {sobrenome}>
+        O nome e: {nome}  e o sobrenome e: {sobrenome}   completo e: {nome +" "+ sobrenome}
+        </p>
+
+    const Parag2 = ({dia,mes,ano}) => 
+    <p className = "cor2" dia = {dia} mes = {mes} ano = {ano}>
+        Data de nascimento dia: {dia}  mes: {mes}  ano: {ano}  data de nascimento completa:
+        {dia}/{mes}/{ano}
+        </p>
+    const Calc = ({atual,anu}) => 
+    <p className = "cor3" atual = {atual} ano = {ano}>
+        o clculado de idade e o ano atual {atual} - ano de nascimento{ano} resultando: {atual - ano}
+</p>
+const container = <>
+<Parag1 id = "paro1" nome = "Juca" sobrenome = "Nascimento silva"/>
+<Parag2 id = "paro2" dia = {20} mes = {12} ano = {2000} />
+</>
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+root.render(container)
+</script>
+    
+</body>
+</html>
