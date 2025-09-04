@@ -1,0 +1,58 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .azul {
+           color: blue;
+        }
+        .verde {
+            color: green;
+        }
+    </style>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
+ 
+    <div id="root"></div>
+ 
+    <script type = "text/babel">
+
+        // Função componente que recebe apenas props personalizadas
+        
+        //fragment e, dentro dele dois parágrafos: no primeiro, deve ser aplicada a classe que
+		//deixa a cor do texto em uma cor e, no outro, a classe que deixa a cor na outra cor.
+        const Pessoa = ({nome, sobrenome, dia, mes, ano}) => (
+            <>
+                <p className="azul"> 
+                    Nome: {nome} {sobrenome} {/*No primeiro parágrafo exibir nome e sobrenome.*/}
+                </p>
+                <p className="verde">    
+                    Data de Nascimento: {dia}/{mes}/{ano} {/*No segundo parágrafo a data de nascimento*/}
+                </p>
+                <div> 
+                    Idade: {2025-ano} anos
+                </div>
+            </>   
+        );
+        
+
+        const container = <>
+
+            {/* Pessoa renderizará as props nome, sobrenome, dia, mes e ano*/}
+            <Pessoa nome="Ana" sobrenome="Silva" dia="15" mes="08" ano="1990" ></Pessoa>
+            <Pessoa nome="João" sobrenome="Souza" dia="23" mes="11" ano="1985" ></Pessoa>
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        
+        root.render(container)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -35,7 +35,12 @@
         //     return <div classeName="msg" {...props}/>
         // } essa função só tem uma linha de retorno, portanto é uma candidata à arrow function
 
-        const Mensagem = props => <div className="msg" {...props} /> //arrow function
+        // Função de componente que recebe props genéricas
+        // A mesma função de componente acima, em formato arrow function
+        const Mensagem = props => <div className="msg" {...props} /> 
+
+        // Função de componente que recebe apenas props personalizadas
+        const Aviso = ({id, children}) => <div className ="msg" id={id} children = {children} />
         
         const propsMsg1 = {
             id: 'msg1',
@@ -44,10 +49,21 @@
             propFicticia: 'teste' //tudo que mandar na prop genérica ele vai renderizar, mesmo que for inútil
         }
 
-        const container =
+        const container = 
             <>
-                <Mensagem {...propsMsg1}/>
+                <Mensagem {...propsMsg1} />
+
+                {/* No componente Mensagem abaixo, todas as props serão recebidas e processadas */}
+                <Mensagem id="msg2" title="Segunda mensagem" teste="testando"> 
+                    Doe sangue! Sangue é vida!
+                </Mensagem>
+
+                {/* Já no componente Aviso a seguir, apenas os props id e children serão processados, as demais serão ignoradas*/}
+                <Aviso id="aviso1" title ="Segundo aviso" teste ="testando">
+                    Atravesse sempre na faixa de pedestres.
+                </Aviso>
             </>
+                
 
         const root = ReactDOM.createRoot(document.getElementById('root'))
         
