@@ -25,8 +25,4 @@ console.log('-'.repeat(80))
 console.log('<h1>FRUTAS ENCONTRADAS NO BRASIL</h1>')
 console.log('<ul>')
 for(const item of itensLista) console.log('  ', item)
-<<<<<<< HEAD
 console.log('</ul>')
-=======
-console.log('</ul>')
->>>>>>> upstream/main
