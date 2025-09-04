@@ -41,3 +41,4 @@ console.log(msError())
 
 // não existe içamento/hoisting em arrow functions, dara erro!
 
+

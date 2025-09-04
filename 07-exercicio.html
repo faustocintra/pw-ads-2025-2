@@ -25,8 +25,8 @@
   <script type="text/babel">
     /*
       EXERCÍCIO DE FIXAÇÃO nº 1
-            1) Crie dois estilos CSS, um que coloque o texto em uma cor
-                e outro que coloque o texto em outra cor.
+      1) Crie dois estilos CSS, um que coloque o texto em uma cor
+      e outro que coloque o texto em outra cor.
 
 			2) Declare uma função de componente que receba as seguintes
 				props personalizadas: nome, sobrenome, dia, mes e ano.
@@ -46,24 +46,22 @@
 				a idade que a pessoa terá ao final do ano, calculada por meio de
 				um cálculo simples (2025 menos o ano de nascimento informado).
     */
-    function Pessoa ({nome, sobrenome, dia, mes, ano}) { 
-        return <div className='pessoa'> {nome}, {sobrenome}, {dia}, {mes}, {ano}  </div>
-    }
-
-    const CalculoIdade = (ano) => ano - 2025
-
-    const Texto1 = Pessoa({nome: "João", sobrenome:"Silva"})
-    const Texto2 = Pessoa({dia:12, mes:8, ano:2005})
-
-
-    const container = 
-            <> 
-
-                
+    const Container = ({nome, sobrenome, dia, mes, ano}) => (
+      <> 
+        <p className='cor1'> {nome} {sobrenome} </p>
+        <p className='cor2'> {dia} / {mes} / {ano} </p>
+        
+        <div> {CalculoIdade(ano)} anos em 2025 </div>
             
-            </>
+      </>
+  )
 
-         const root = ReactDOM.createRoot(document.getElementById('root'))
+    const CalculoIdade = (ano) => 2025 - ano
+
+    const elemento = <Container nome="Raimundo" sobrenome="Silva" dia={15} mes={8} ano={1980} />
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+
+    root.render(elemento)
   </script>
   
 </body>
