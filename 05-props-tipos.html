@@ -39,6 +39,8 @@
         // a mesma função de cima porém em arrow function
         const Mensagem = props => <div className = "msg" {...props} />
 
+        const Aviso = ({id, children}) => <div className="msg" id={id} children={children}/>
+
         const propsMsg1 = {
             id: 'msg1',
             title: 'Primeira mensagem',
@@ -49,6 +51,13 @@
         const container = 
             <>
                 <Mensagem {...propsMsg1}/>
+     
+                {/* no componente Mensagem abaixo, todas as props serão recebidas e processadas */}
+                <Mensagem id="msg2" title="segunda mensagem" teste="testando"> Doe sangue! </Mensagem>
+
+                {/* já no componente Aviso a seguir, apenas as props id e children serão processadas, as demais serão ignoradas*/}
+                <Aviso id="aviso1" title="Segundo aviso" teste="testando"> Atravesse sempre na faixa pedestres </Aviso>
+                
             </>
         
         const root = ReactDOM.createRoot(document.getElementById('root'))
