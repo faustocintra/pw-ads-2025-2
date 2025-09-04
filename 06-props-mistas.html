@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04/09 - Props Mistas</title>
+    <style>
+        .soma {
+            border-radius: 5px;
+            border: 3px solid royalblue;
+            padding: 5px;
+            margin: 5px;
+            font-weight: bold;
+            animation: pulsaFonte 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulsaFonte {
+            0% {
+                font-size: 18px;
+                background-color: rgb(209, 233, 239);
+            }
+
+            50% {
+                font-size: 20px;
+                background-color: rgb(170, 230, 245);
+                color: navy;
+                font-weight: bolder;
+            }
+
+            100% {
+                font-size: 18px;
+                background-color: rgb(209, 233, 239);
+            }
+        }
+
+        .direita {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: lightgreen;
+            padding: 8px;
+            border: 2px solid green;
+            border-radius: 20px 0 20px 0;
+        }
+
+        .centro {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: tan;
+            padding: 8px;
+            border: 2px solid sienna;
+            border-radius: 0 20px 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <div id="root"></div>
+
+
+    <script type='text/babel'>
+        /*
+            Um mesmo componente pode combinar props genéricas e personalizadas.
+            No caso a seguir, quaisquer props passadas alem de num1 e num2 serão recebidas dentro de ...props
+        */
+        const Soma = ({ num1, num2, ...props }) => <p class="soma" {...props}>A soma de {num1} + {num2} = {num1 + num2}</p>
+
+        //Função de componente que recebe props genéricas
+        const ParagCentro = props => <p class="centro" {...props}></p>
+
+        //Função de componente que recebe props personalizadas
+        const ParagDireita = ({ id, children }) => <p className="direita" id={id} children={children}></p>
+
+        const container =
+            <>
+                {/*Apenas props do tipo String pode ser passada entre aspas. 
+                -> Todas as demais devem ser passadas entre chaves{}*/}
+                <Soma id="soma1" num1={14} num2={57} title="Soma de 14 + 57" />
+
+                {/*ParagCentro irá renderzar  qualquer prop passada*/}
+                <ParagCentro id="parag1" title="Parágrafo Centralizado">Centralizado</ParagCentro>
+
+                {/*ParagDireita irá renderizar apenas as props id e children*/}
+                <ParagDireita id="parag2" title="Parágrafo Direita" teste="teste">Alinhado à direita</ParagDireita>
+            </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(container);
+    </script>
+</body>
+
+</html>
