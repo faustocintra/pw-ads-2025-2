@@ -5,6 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    /* Criação de dois estilos CSS */
+    .estilo1 {
+      color: cornflowerblue;
+      background-color: whitesmoke;
+      border: groove blue 3px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 10px;
+    }
+    
+    .estilo2 {
+      color: hotpink;
+      background-color: rgb(100, 100, 100);
+      border: solid black 3px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -39,7 +60,25 @@
 				um cálculo simples (2025 menos o ano de nascimento informado).
         
     */
+
+    //Função componente de props personalizadas
+    const PropsPerso = ({nome, sobrenome, dia, mes, ano}) => 
+      //Fragment com dois parágrafos com estilos diferentes, que mostram
+      //nome completo e data de nascimento, e uma div, que calcula e
+      //exibe a idade no final do ano
+      <> 
+        <p class="estilo1">Nome completo: {nome} {sobrenome}</p>
+        <p class="estilo2">Data de nascimento: {dia}/{mes}/{ano}</p>
+        <div class="estilo1">Idade no final do ano: {2025-ano}</div>
+      </>
 		
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+
+    //Render com a função em sintaxe JSX.
+    //Um container não foi necessário para completar
+    //o exercício, pois apenas uma função foi utilizada
+    root.render(<PropsPerso nome="Iberê" sobrenome="Thenório" dia={4} mes={12} ano={1981}/>)
+
   </script>
   
 </body>
