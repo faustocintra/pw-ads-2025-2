@@ -65,7 +65,8 @@
 				a idade que a pessoa terá ao final do ano, calculada por meio de
 				um cálculo simples (2025 menos o ano de nascimento informado).
     */
-		function Pessoa({ nome, sobrenome, dia, mes, ano }) {
+
+    const Pessoa = ({ nome, sobrenome, dia, mes, ano }) => {
       const idade = 2025 - ano;
       return (
         <>
@@ -78,10 +79,14 @@
       );
     }
 
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(
-      <Pessoa nome="André" sobrenome="Scarano Carrijo" dia={7} mes={10} ano={2005} />
+    const container = (
+      <>
+        <Pessoa nome="André" sobrenome="Scarano Carrijo" dia={7} mes={10} ano={2005} />
+      </>
     );
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(container);
   </script>
   
 </body>
