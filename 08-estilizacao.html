@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="08.css">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+    /*
+      Para especificar estilos em um componente, é necessário atentar-se
+      para as seguintes regras:
+      1) O nome das propriedades não pode ter hífen como em CSS, sendo
+         preciso usar a convenção "camelCase" em vez disso. Por exemplo,
+         "background-color" deve ser especificado como "backgroundColor".
+      2) Todos os valores de propriedades que não sejam numéricos devem
+         ser informados entre aspas. P. ex., 300px ~> "300px".
+      3) As diferentes propriedades são separadas por VÍRGULA (e não por
+         ponto-e-vírgula, como em CSS).
+      4) Algumas propriedades ganham novos nomes em JSX porque seu nome
+         em CSS corresponde a palavras reservadas da linguagem JavaScript,
+         o que poderia causar conflitos. P. ex., "class" se torna "className"
+         e "for" se torna "htmlFor".
+    */
+
+    /*
+      Em CSS, escreveríamos uma classe de estilo assim:
+      .estilo1 {
+        background-color: orange;
+        font-size: 30px;
+        font-family: "Courier New", monospace;
+        border: 4px dotted blue;
+      }
+    */
+
+    // O mesmo estilo acima, mas representado em um objeto JavaScript:
+    const estilo1 = {
+      backgroundColor: 'orange',
+      fontSize: '30px',
+      fontFamily: '"Courier New", monospace',
+      border: '4px dotted blue'
+    }
+
+    /*
+      A seguir, um componente de caixa altamente personalizado. Recebe
+      tanto props personalizadas ("style" e "size") quanto props genéricas
+      ("...props"). Além disso, provê um valor padrão para a prop "size"
+      caso o valor desta não tenha sido passado.
+
+      Observe as chaves duplas na prop "style". As chaves externas indicam
+      que o valor da prop não é do tipo string. As chaves internas são
+      usadas porque o valor da prop é do tipo objeto.
+    */
+    const BoxItalic = ({style, size = 'small', ...props}) =>
+      <div
+        className={`box box--${size}`}
+        style={ { fontStyle: 'italic', ...style } }
+        {...props}
+      />
+
+
+    const container = <>
+      {/*
+        Nesta primeira caixa, as propriedades de estilo passadas
+        ("backgroundColor" e "color") serão mescladas com a propriedade
+        de estilo que foi especificada na declaração da função de
+        componente ("fontStyle"). O valor da prop "size" não foi passado;
+        portanto, será assumido o valor "small".
+      */}
+      <BoxItalic
+        id="box1"
+        style={{
+          backgroundColor: "violet",
+          color: "beige"
+        }}
+      >
+        Primeira caixa em itálico
+      </BoxItalic>
+
+      {/*
+        Nesta segunda caixa, várias props foram passadas e, com exceção
+        de "style" e "size", todas elas serão recebidas e processadas
+        dentro de "...props". Note que o texto interno da caixa foi
+        passado via prop "children", em vez de ser colocada entre as tags
+        de abertura e fechamento do componente
+      */}
+      <BoxItalic
+        id="box2"
+        title="Caixa grande"
+        size="large"
+        nadaaver="seila"
+        style={{
+          borderColor: 'orange',
+          color: 'white',
+          backgroundColor: 'chocolate'
+        }}
+        children="Segunda caixa em itálico"
+      />
+
+      {/*
+        Nesta última caixa, passamos a propriedade "fontStyle" na
+        prop "style" com um valor conflitante com aquele que foi
+        especificado na mesma propriedade na função de componente.
+        Nesse caso, sempre prevalece o que foi passado em detrimento
+        do que foi determinado na função de componente
+      */}
+      <BoxItalic
+        id="box3"
+        children="Caixa média com itálico desligado"
+        size="medium"
+        style={{
+          fontStyle: 'normal',
+          borderColor: 'navy',
+          backgroundColor: 'aliceblue'
+        }}
+      />
+    </>
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(container)
+  </script>
+</body>
+</html>
