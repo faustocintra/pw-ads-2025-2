@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05/09 - CSS</title>
+    <link rel="stylesheet" href="08.css">
+</head>
+
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /*
+            Para especificar estilos em um componente, é preciso se atentar para as seguintes regras:
+            1) O nome das propriedades CSS não podem conter hífen (-). Exemplo: background-color -> backgroundColor
+            2) Os valores das propriedades CSS devem ser strings, ou seja, informado entre aspas. Ex: backgroundColor: 'lightblue'
+            3) As diferentes propriedades devem ser separadas por vírgula. Ex: { color: 'blue', backgroundColor: 'lightblue' }
+            4) Algumas propriedades ganham novos nomes no JSX porque seu nome em CSS é uma palavra reservada do JavaScript. Exemplo: class -> className, float -> cssFloat 
+        */
+
+        /*
+            Em CSS, escreveríamos uma classe de estilo assim:
+            .cor1 {
+                color: royalblue;
+                font-weight: bold;
+                font-size: 22px;
+                margin-bottom: 8px;
+                text-align: center;
+            }
+            
+            No JSX, o equivalente seria:
+            const estilo1 = {
+                color: 'royalblue',
+                fontWeight: 'bold',
+                fontSize: '22px',
+                marginBottom: '8px',
+                textAlign: 'center'
+            }
+        */
+
+        const estilo1 = {
+            backgroundColor: 'orange',
+            fontSize: '30px',
+            fontFamily: "'Courier New', monospace",
+            border: '4px dotted blue',
+        }
+
+        /*
+            A seguir, um componente de caixa altamente personalizado, Recebe tanto props personalizadas ("style" e "size"), qaunto props genéricas (...props). Além disso, provê valores padrão para as props "style" e "size", caso elas não sejam informadas.
+    
+            Observe as chaves duplas no prop "style". As chaves externas indicam que o valor é uma expressão JavaScript, e as chaves internas indicam que o valor é um objeto JavaScript.
+        */
+        const BoxItalic = ({ style = {}, size = 'small', children, ...props }) => {
+            return (
+                <div
+                    className={`box box--${size}`}
+                    style={{ fontStyle: 'italic', ...style }}
+                    {...props}
+                >
+                    {children}
+                </div>
+            );
+        };
+
+        const container =
+            <>
+                <BoxItalic
+                    id="box1"
+                    style={{
+                        backgroundColor: "violet",
+                        color: "beige",
+                    }}
+                >
+                    Primeira Caixa em Itálico
+                </BoxItalic>
+
+                <BoxItalic
+                    id="box2"
+                    title="Caixa Grande"
+                    size="large"
+                    nadaaver="seila"
+                    style={{
+                        borderColor: 'orange',
+                        color: 'white',
+                        backgroundColor: 'chocolate',
+                    }}
+                >
+                    Segunda Caixa em Itálico
+                </BoxItalic>
+
+                <BoxItalic
+                    id="box3"
+                    style={{
+                        fontStyle: 'normal',
+                        borderColor: 'navy',
+                        backgroundColor: 'aliceblue',
+                    }}
+                >
+                    Caixa Média com itálico desativado
+                </BoxItalic>
+            </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(container);
+    </script>
+</body>
+
+</html>
