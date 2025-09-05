@@ -39,6 +39,43 @@
 				um cálculo simples (2025 menos o ano de nascimento informado).
         
     */
+
+    // 1) Criando os estilos CSS.
+const estiloVermelho = {
+  color: 'red'
+};
+
+const estiloAzul = {
+  color: 'blue'
+};
+
+// 2) Declarando a função do componente.
+function InformacoesPessoais(props) {
+  // 6) Calculando a idade.
+  const anoAtual = 2025;
+  const idade = anoAtual - props.ano;
+  
+  return (
+    <React.Fragment>
+      {/* 3) Aplicando a classe com estiloVermelho.
+          4) Exibindo o nome completo. */}
+      <p style={estiloVermelho}>Nome Completo: {props.nome} {props.sobrenome}</p>
+      
+      {/* 3) Aplicando a classe com estiloAzul.
+          5) Exibindo a data de nascimento. */}
+      <p style={estiloAzul}>Data de Nascimento: {props.dia}/{props.mes}/{props.ano}</p>
+      
+      {/* 6) Exibindo a idade calculada. */}
+      <div>Idade no final de 2025: {idade} anos</div>
+    </React.Fragment>
+  );
+}
+
+// Renderizando o componente com os dados de exemplo.
+ReactDOM.render(
+  <InformacoesPessoais nome="Pedro" sobrenome="Tries" dia="22" mes="07" ano="2001" />,
+  document.getElementById('root')
+);
 		
   </script>
   
