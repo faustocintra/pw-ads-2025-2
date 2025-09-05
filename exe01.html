@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercicio 01 (04/09/2025)</title>
+  <style>
+    .corN1 {
+      color: lightgreen;
+      font-weight: bold;
+      font-family: Verdana, sans-serif;
+      margin-bottom: 15px;
+        text-align: center;   
+    }
+    .corN2 {
+      color: lightsalmon;
+      font-style: italic;
+      font-family: Georgia, serif;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .idade {
+      background: lightcyan;
+      border: 4px solid gray;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      font-family: Consolas, monospace;
+      width: fit-content;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+ 
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+  <div id="root"></div>
+ 
+  <script type="text/babel">
+    /*
+      
+      P1: EXERCÍCIO DE FIXAÇÃO nº 1
+      Componente que exibe nome completo, data de nascimento
+      e a idade ao final de 2025.
+    
+    */
+ 
+    function ExibeNOME({Nome, Sobrenome, Dia, Mes, Ano}) {
+      /*
+      P2: Cálculo simples da idade ao final de 2025
+      */
+     
+      const idade = 2025 - Ano
+ 
+      return (
+        <>
+          <p className="corN1">{Nome} {Sobrenome}</p>
+          <p className="corN2">{Dia}/{Mes}/{Ano}</p>
+          <div className="idade">
+            Idade ao final de 2025: {idade} anos
+          </div>
+        </>
+      )
+    }
+ 
+    // Container com alguns exemplos
+    const container =
+      <>
+        <ExibeNOME Nome="Jalisson" Sobrenome="Junior" Dia={24} Mes={10} Ano={2004} />
+        <ExibeNOME Nome="Maria" Sobrenome="Fernanda" Dia={1} Mes={3} Ano={2002} />
+      </>
+ 
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(container)
+  </script>
+ 
+</body>
+</html>
