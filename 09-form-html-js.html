@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11/09 Formulário HTML JS</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0eaff 0%, #f8f8ff 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        form {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.15);
+            padding: 32px 28px;
+            max-width: 350px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            border: 2px solid #e3e3ff;
+            align-items: center;
+        }
+        label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            color: #2d3a4a;
+        }
+        input[type="text"] {
+            border: 2px solid #b3c6ff;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 17px;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 180px;
+        }
+        input[type="text"]:focus {
+            border-color: #1371ff;
+        }
+        input[type="checkbox"] {
+            accent-color: #1371ff;
+            width: 18px;
+            height: 18px;
+        }
+        button, input[type="submit"] {
+            background: #1371ff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: auto;
+            transition: background 0.2s;
+        }
+        button:hover, input[type="submit"]:hover {
+            background: #0d4fb3;
+        }
+        #resultado {
+            display: block;
+            margin: 18px auto 0 auto;
+            font-size: 22px;
+            color: #1371ff;
+            font-weight: bold;
+            text-align: center;
+            min-height: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <label for="">
+                <span>Nome:</span>
+                <input type="text" id="campo-nome">
+            </label>
+        </div>
+        <div>
+            <label for="">
+                <input type="checkbox" id="maiusc">
+                <span>Colocar o nome em letra maiúscula</span>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Enviar">
+    </form>
+
+    <div id="resultado"></div>
+    
+    <script>
+        let nome, maiusc;
+
+        function handleChange(event){
+            maiusc = document.getElementById('maiusc').checked;
+            nome = maiusc ? document.getElementById('campo-nome').value.toUpperCase() : document.getElementById('campo-nome').value;
+
+        document.getElementById('resultado').textContent = nome;
+        }
+
+        function handleSubmit(event){
+            event.preventDefault();
+            alert(`Olá, ${nome}!`);
+        }
+
+        /*
+            Quando o valor do campo "campo-nome" mudar, a função handleChange() será chamada.
+        */
+        document.getElementById('campo-nome').addEventListener('input', handleChange);
+
+        /*
+            Quando o valor da caixa de verificação "maiusc" mudar, a função handleChange() também será chamada.
+        */
+        document.getElementById('maiusc').addEventListener('change', handleChange);
+
+        /*
+            Quando o formulário for enviado, a função handleSubmit() será chamada.
+        */
+        document.querySelector('form').addEventListener('submit', handleSubmit);
+    </script>
+</body>
+</html>
