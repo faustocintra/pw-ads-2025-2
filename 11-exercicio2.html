@@ -3,7 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Atividade 12 / 09 / 2025</title>
+  <style>
+    /* Estilo básico para deixar bonito */
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 20px;
+    }
+    
+    #root {
+    text-align: center;   /* Centraliza o texto */
+    margin-top: 50px;     /* Dá um espaço do topo */
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      padding: 5px;
+      width: 200px;
+    }
+
+    .resultado-box {
+      margin: 20px auto;    
+      padding: 10px;
+      width: 220px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
@@ -20,18 +57,63 @@
 
     function Form(){
 
-        const realRef = React.useRef()
-        const cotDolarRef = React.useRef()
-        const conversaoRef = React.useRef()
-
-       
+      let valorEmReais, cotDolar, conversao
 
 
+      const realRef = React.useRef()
+      const cotDolarRef = React.useRef()
+      const conversaoRef = React.useRef()
 
+      function handleChange(event) {
+        /*
+          Observe: <ref>.current equivale a
+          document.getElementById('id')
+        */
+        
+        valorEmReais = realRef.current.value
+        cotDolar = cotDolarRef.current.value
+        if ( valorEmReais > 0 && cotDolar > 0 ) {
+          conversao = valorEmReais / cotDolar
+          conversaoRef.current.textContent = conversao.toFixed(2) + " U$"      
+        } else conversaoRef.current.textContent = " 0,00 U$"
+      }   
+
+      return <>
+        <h1> Formulário Exercício 2 </h1>
+        <form>
+          <div>
+            <label>
+              <span>Valor em Reais (R$):</span> <br />
+              {/* 
+                Observe: ref está sendo usado em vez de id.
+                No lugar de addEventListener(), estamos associando
+                a função manipuladora de eventos diretamente no
+                componente  
+              */}
+              <input type="number" ref={realRef} onChange={handleChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              <span>Cotação do Dólar ($) :</span> <br />
+              <input type="number" ref={cotDolarRef} onChange={handleChange} />
+            </label>
+          </div>
+          <div className="resultado-box">
+              Resultado: <span ref={conversaoRef}>0,00 U$</span>
+          </div>
+        </form>
+      </>
     }
 
+    // querySelect('#root') é equivalente a getElementById('root')
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />)
+  </script>
+</body>
+</html>
 
-    //4) Crie e coloque hooks useRef nos três elementos criados.
+    <!-- //4) Crie e coloque hooks useRef nos três elementos criados.
 
     //5) Escreva uma única função handleChange para interceptar a mudança 
     //   nos dois inputs, efetuar o cálculo da conversão e atualizar o valor
@@ -43,9 +125,4 @@
     //7) Observação: neste formulário não há o botão de enviar. Portanto, não é necessário
       //ter a função handleSubmit nem chamá-la no onSubmit do form.
 
-    //8) Faça o necessário para que o formulário seja renderizado ao exibir a página.
-
-  </script>
-  
-</body>
-</html>
+    //8) Faça o necessário para que o formulário seja renderizado ao exibir a página. -->
