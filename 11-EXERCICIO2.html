@@ -11,30 +11,51 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   
   <div id="root"></div>
-
+  
   <script type="text/babel">
-    /*
-    1) Crie um formulário em React e coloque nele um input numérico com o label "Valor em reais".
+    function Form(){
+        let valorEmReais, cotacaoDolar
 
-    2) Coloque outro input numérico com o label "Cotação do dólar".
+        const valorEmReaisRef = React.useRef()
+        const cotacaoDolarRef = React.useRef()
+        const resultadoRef = React.useRef()
 
-    3) Coloque, também, uma div para exibir o resultado da conversão de moeda.
+        function handleChange(event){
+            valorEmReais = valorEmReaisRef.current.value
+            cotacaoDolar = cotacaoDolarRef.current.value
 
-    4) Crie e coloque hooks useRef nos três elementos criados.
+            let resultado = valorEmReais / cotacaoDolar
+            resultadoRef.current.textContent = resultado.toFixed(2)
+        }
 
-    5) Escreva uma única função handleChange para interceptar a mudança 
-      nos dois inputs, efetuar o cálculo da conversão e atualizar o valor
-      de uma variável com o resultado.
-
-    6) Usando a variável que foram atualizada em handleChange, 
-      exiba na div de resultado o valor convertido.
-
-    7) Observação: neste formulário não há o botão de enviar. Portanto, não é necessário
-      ter a função handleSubmit nem chamá-la no onSubmit do form.
-
-    8) Faça o necessário para que o formulário seja renderizado ao exibir a página.
-
-    */
+        return <>
+            <h1>Exercicio 2</h1>
+            <form>
+                <div>
+                    <label>            
+                        <span>Valor em Reais: </span>
+                        <input type="number" ref={valorEmReaisRef} onChange={handleChange} /> 
+                </label>
+                </div>
+                <div>
+                    <label>
+                        <br/>
+                        <span>Cotação do dolar: </span>
+                        <input type="number" ref={cotacaoDolarRef} onChange={handleChange} />
+                    </label>
+                </div>
+                <div>
+                    <br/>
+                    <span>Resultado = </span>
+                    <span ref={resultadoRef}></span>
+                </div>
+            </form>
+        </>
+    }
+    
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />) 
+       
   </script>
   
 </body>
