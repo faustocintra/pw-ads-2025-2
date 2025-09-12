@@ -35,6 +35,39 @@
             8) Faça o necessário para que o formulário seja renderizado ao exibir a página.
         */
 
+        function Form() {
+            
+            const realRef = React.useRef()
+            const dolarRef = React.useRef()
+            const resultadoRef = React.useRef()
+
+            function handleChange(event) {
+                let conversao = Number(dolarRef.current.value) <= 0 ? 0 : (Number(realRef.current.value) / Number(dolarRef.current.value)).toFixed(2)
+                resultadoRef.current.textContent = conversao + "$"
+            }
+
+            return <>
+                <h1>Formulário Conversão Dólar - Real</h1>
+                <form>
+                    <div>
+                        <label>
+                            <span>Valor em real:</span> <br/>
+                            <input type="number" ref={realRef} onChange={handleChange} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <span>Cotação do dólar: </span> <br />
+                            <input type="number" ref={dolarRef} onChange={handleChange} />
+                        </label>
+                    </div>
+                    <div ref={resultadoRef} />
+                </form>
+            </>
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<Form />)
     </script>
 </body>
 </html>
