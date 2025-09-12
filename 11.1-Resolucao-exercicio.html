@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form() {
+            const [real, setReal] = React.useState('');
+            const [dolar, setDolar] = React.useState('');
+            const [resultado, setResultado] = React.useState(null);
+
+            function handleChange(event) {
+                const { name, value } = event.target;
+                if (name === "real") {
+                    setReal(value);
+                } else if (name === "dolar") {
+                    setDolar(value);
+                }
+            }
+
+            function handleSubmit(event) {
+                event.preventDefault();
+                if (real && dolar) {
+                    const resultadoConvertido = parseFloat(real) / parseFloat(dolar);
+                    setResultado(resultadoConvertido.toFixed(2)); 
+                } else {
+                    setResultado("Por favor, insira valores válidos.");
+                }
+            }
+
+            return (
+                <>
+                    <h1>Conversão Real - Dólar</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label>
+                                <span>Quantidade em Reais: </span> <br />
+                                <input
+                                    type="number"
+                                    name="real"
+                                    value={real}
+                                    onChange={handleChange}
+                                    placeholder="Digite o valor em reais"
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <span>Cotação do Dólar: </span> <br />
+                                <input
+                                    type="number"
+                                    name="dolar"
+                                    value={dolar}
+                                    onChange={handleChange}
+                                    placeholder="Digite a cotação do dólar"
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <button type="submit">Converter</button>
+                        </div>
+                    </form>
+
+                    {resultado !== null && (
+                        <div>
+                            <h3>Resultado: {resultado} U$</h3>
+                        </div>
+                    )}
+                </>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#root'));
+        root.render(<Form />);
+    </script>
+</body>
+</html>
