@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background-color: #f0f2f5;
+      }
+
+      .container {
+          background-color: #fff;
+          padding: 20px 40px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+          text-align: center;
+          color: #333;
+      }
+      
+      /* 1. Estilizando o formulário como uma "tabela" com Flexbox */
+      .formulario-tabela {
+          display: flex;
+          flex-direction: column; /* Coloca os itens um abaixo do outro */
+          gap: 15px; /* Espaço entre as "linhas" */
+      }
+      
+      .formulario-linha {
+          display: flex;
+          align-items: center;
+      }
+
+      .formulario-label {
+          /* 2. Coluna da esquerda (rótulo) */
+          flex: 1; /* Ocupa o espaço restante */
+          min-width: 150px; /* Garante uma largura mínima */
+          padding-right: 15px;
+          text-align: right;
+          color: #555;
+      }
+
+      .formulario-input {
+          /* 3. Coluna da direita (input) */
+          flex: 2; /* Ocupa o dobro do espaço */
+      }
+
+      .formulario-input input {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+
+      .resultado {
+          text-align: center;
+          margin-top: 20px;
+          font-size: 1.2em;
+          font-weight: bold;
+          color: #2c3e50;
+          padding: 10px;
+          background-color: #ecf0f1;
+          border-radius: 4px;
+      }
+
+      .resultado.oculto {
+          visibility: hidden;
+      }
+
+  </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
+ 
+    <div id="root"></div>
+ 
+    <script type = "text/babel">
+    
+    //1) Crie um formulário em React e coloque nele um input numérico com o label "Valor em reais".
+    
+    //2) Coloque outro input numérico com o label "Cotação do dólar".
+
+    //3) Coloque, também, uma div para exibir o resultado da conversão de moeda.
+
+    //4) Crie e coloque hooks useRef nos três elementos criados.
+
+    /*5) Escreva uma única função handleChange para interceptar a mudança 
+      nos dois inputs, efetuar o cálculo da conversão e atualizar o valor
+      de uma variável com o resultado.*/
+
+    /*6) Usando a variável que foram atualizada em handleChange, 
+      exiba na div de resultado o valor convertido.*/
+
+    /*7) Observação: neste formulário não há o botão de enviar. Portanto, não é necessário
+      ter a função handleSubmit nem chamá-la no onSubmit do form.*/
+
+    //8) Faça o necessário para que o formulário seja renderizado ao exibir a página.
+    const Form = () => { 
+      let valor, cotacao, resultado 
+
+        const valorRef = React.useRef()
+        const cotacaoRef = React.useRef()
+        const resultadoRef = React.useRef()
+
+        function handleChange(event){
+          valor = valorRef.current.value
+          cotacao = cotacaoRef.current.value
+          if(valor > 0 && cotacao > 0){
+            resultado = (valor/cotacao).toFixed(2)  
+            resultadoRef.current.textContent = `$ ${resultado}`    
+          }
+          else {
+            resultadoRef.current.textContent = `$0,00`
+          }
+          
+        }
+          return <>
+          <div className="container">
+            <h1>Formulário Exercício 2</h1>
+            <div className = "formulario-tabela">
+              <form>
+                <div className="formulario-label">            
+                  <div>
+                    <label>    
+                      <span>Valor em Reais:</span>
+                      <input type="number" ref={valorRef} onInput={handleChange} />   
+                    </label>           
+                  </div>
+                  <div>  
+                    <label>                   
+                      <span>Cotação do Dólar:</span>
+                      <input type="number" ref={cotacaoRef} onInput={handleChange} />
+                    </label>  
+                  </div>
+                </div>  
+                  <div className="resultado"> 
+                    <div>
+                      <span>Conversão em Dólar: </span> 
+                        <div ref={resultadoRef} /> 
+                    </div>
+                </div>  
+              </form>
+            </div>
+          </div>  
+          </>
+    }
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form/>)             
+    
+    </script>   
+</body>
+</html>
