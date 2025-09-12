@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotação</title>
+  <Style>
+        body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #eaf4fc);
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      width: 360px;
+      text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #0056a6;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin: 1rem 0 0.4rem;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s;
+      background: #fdfdfd;
+    }
+
+    input:focus {
+      border-color: #0056a6;
+      box-shadow: 0 0 6px rgba(0,86,166,0.3);
+    }
+
+    .resultado {
+      margin-top: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #0056a6;
+      background: #f1f9ff;
+      padding: 0.8rem;
+      border-radius: 8px;
+    }
+  </Style>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+    /*
+    1) Crie um formulário em React e coloque nele um input numérico com o label "Valor em reais".
+
+    2) Coloque outro input numérico com o label "Cotação do dólar".
+
+    3) Coloque, também, uma div para exibir o resultado da conversão de moeda.
+
+    4) Crie e coloque hooks useRef nos três elementos criados.
+
+    5) Escreva uma única função handleChange para interceptar a mudança 
+      nos dois inputs, efetuar o cálculo da conversão e atualizar o valor
+      de uma variável com o resultado.
+
+    6) Usando a variável que foram atualizada em handleChange, 
+      exiba na div de resultado o valor convertido.
+
+    7) Observação: neste formulário não há o botão de enviar. Portanto, não é necessário
+      ter a função handleSubmit nem chamá-la no onSubmit do form.
+
+    8) Faça o necessário para que o formulário seja renderizado ao exibir a página.
+
+    */
+
+        const { useRef, useState } = React;
+
+    function Conversor() {
+      const valorRef = useRef(null);
+      const cotacaoRef = useRef(null);
+      const resultadoRef = useRef(null);
+
+      const [resultado, setResultado] = useState(0);
+
+      function handleChange() {
+        const valor = parseFloat(valorRef.current.value) || 0;
+        const cotacao = parseFloat(cotacaoRef.current.value) || 0;
+        const convertido = cotacao > 0 ? valor / cotacao : 0;
+        setResultado(convertido);
+      }
+
+      return (
+        <form>
+          <div>
+            <label>
+              Valor em reais:
+              <input
+                type="number"
+                ref={valorRef}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Cotação do dólar:
+              <input
+                type="number"
+                step="0.01"
+                ref={cotacaoRef}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div ref={resultadoRef}>
+            Resultado em dólares: {resultado.toFixed(2)}
+          </div>
+        </form>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Conversor />);
+  </script>
+</body>
+</html>
