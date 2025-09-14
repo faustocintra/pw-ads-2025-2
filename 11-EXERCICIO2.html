@@ -35,6 +35,61 @@
     8) Faça o necessário para que o formulário seja renderizado ao exibir a página.
 
     */
+
+    function ConversorDeMoeda() {
+  const inputReaisRef = React.useRef(null);
+  const inputCotacaoRef = React.useRef(null);
+  const [valorConvertido, setValorConvertido] = React.useState('');
+
+  const converterMoeda = () => {
+    const valorEmReais = parseFloat(inputReaisRef.current.value);
+    const cotacaoDolar = parseFloat(inputCotacaoRef.current.value);
+
+    if (isNaN(valorEmReais) || isNaN(cotacaoDolar) || cotacaoDolar === 0) {
+      setValorConvertido('');
+      return;
+    }
+
+    const resultado = valorEmReais / cotacaoDolar;
+    setValorConvertido(resultado.toFixed(2));
+  };
+
+  return (
+    <form>
+      <h2>Conversor de Moeda</h2>
+      <div>
+        <label htmlFor="reais">Valor em reais</label>
+        <input 
+          type="number" 
+          id="reais" 
+          name="valorEmReais"
+          ref={inputReaisRef}
+          onChange={converterMoeda} 
+        />
+      </div>
+
+      <div>
+        <label htmlFor="cotacao">Cotação do dólar</label>
+        <input 
+          type="number" 
+          id="cotacao" 
+          name="cotacaoDolar"
+          ref={inputCotacaoRef}
+          onChange={converterMoeda} 
+        />
+      </div>
+
+      <div>
+        <p>Valor convertido em dólar:</p>
+        <p>{valorConvertido ? `$ ${valorConvertido}` : ''}</p>
+      </div>
+    </form>
+  );
+}
+
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(<ConversorDeMoeda />);
   </script>
   
 </body>
