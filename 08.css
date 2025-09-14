@@ -1,5 +1,5 @@
 .box {
-  border: 4px solid #333;
+  border: 4px solid #ff0000;
   display: flex;
   flex-direction: column;
   justify-content: center;
