@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3 - André</title>
+</head>
+
+<body style="text-align: center;">
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form() {
+            // Estados
+            const [nome, setNome] = React.useState("");
+            const [maiusc, setMaiusc] = React.useState(false);
+
+            // Atualiza o nome conforme o input e o checkbox
+            function handleNomeChange(event) {
+                setNome(event.target.value);
+            }
+
+            function handleMaiuscChange(event) {
+                setMaiusc(event.target.checked);
+            }
+
+            function handleSubmit(event) {
+                event.preventDefault();
+                const nomeFinal = maiusc ? nome.toUpperCase() : nome;
+                alert(`Olá, ${nomeFinal}!`);
+            }
+
+            // Nome exibido no resultado
+            const nomeExibido = maiusc ? nome.toUpperCase() : nome;
+
+            return (
+                <>
+                    <h1>Formulário React</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label style={{
+                                fontSize: "20px",
+                                fontWeight: "bold"
+                            }}>
+                                <span>Nome:</span>
+                                <input
+                                    type="text"
+                                    value={nome}
+                                    onChange={handleNomeChange}
+                                />
+                            </label>
+                        </div><br />
+                        <div>
+                            <label style={{
+                                fontSize: "18px",
+                                fontWeight: "bold"
+                            }}>
+                                <input
+                                    type="checkbox"
+                                    checked={maiusc}
+                                    onChange={handleMaiuscChange}
+                                    style={{
+                                        width: "20px",
+                                        height: "20px",
+                                        marginRight: "8px"
+                                    }}
+                                />
+                                <span>Colocar o nome em letra maiúscula</span>
+                            </label>
+                        </div>
+                        <div>
+                            <br />
+                            <input type="submit" value="Enviar" style={{
+                                padding: "8px 16px",
+                                fontSize: "16px",
+                                background: "#yellow",
+                                border: "2px solid black",
+                                borderRadius: "5px 0 5px 0",
+                                cursor: "pointer"
+                            }} />
+                        </div>
+                    </form>
+                    <div
+                        id="resultado"
+                        style={{
+                            marginTop: "18px",
+                            fontSize: "22px",
+                            color: "green",
+                            fontWeight: "bold",
+                            textAlign: "center"
+                        }}
+                    >
+                        {nomeExibido}
+                    </div>
+                </>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
+        root.render(<Form />);
+    </script>
+
+</body>
+
+</html>

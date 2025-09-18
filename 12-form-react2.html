@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opção 2 de Formulário no React</title>
+</head>
+<body style="text-align: center;">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+    function Form(){
+        const [valorReais, setValorReais] = React.useState('');
+        const [cotDolar, setCotDolar] = React.useState('');
+
+        let resultado = 0;
+        if (valorReais && cotDolar) {
+            resultado = valorReais / cotDolar;
+        }
+
+        return(
+            <>
+                <h1>Formulário Conversão R$ ➔ US$</h1>
+                <form style={{
+                    border:"3px solid black",
+                    borderRadius: "16px 2px 16px 2px",
+                    width: "400px",
+                    margin: "0 auto",
+                    padding: "50px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "15px"
+                }}>
+                    <div>
+                        <label>
+                            <span>
+                                Valor em Reais: 
+                            </span>
+                            <input 
+                            type="number" 
+                            value={valorReais}
+                            onChange={event => setValorReais(event.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <span>
+                                Cotação do Dólar: 
+                            </span>
+                            <input 
+                            type="number" 
+                            value={cotDolar}
+                            onChange={event => setCotDolar(event.target.value)} 
+                            />
+                        </label>
+                    </div>
+                        <div>
+                            {valorReais && cotDolar ? 
+                                `Valor em dólar = ${(resultado).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}` 
+                                : "Valor em dólar = $0.00"
+                            }
+                        </div>
+                </form>
+            </>
+        );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Form />);
+</script>
+</body>
+</html>
