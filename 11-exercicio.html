@@ -13,29 +13,61 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    /*
-    1) Crie um formulário em React e coloque nele um input numérico com o label "Valor em reais".
 
-    2) Coloque outro input numérico com o label "Cotação do dólar".
-
+    /* 1) Crie um formulário em React e coloque nele um input numérico com o label "Valor em reais". 
+    2) Coloque outro input numérico com o label "Cotação do dólar". 
     3) Coloque, também, uma div para exibir o resultado da conversão de moeda.
+    4) Crie e coloque hooks useRef nos três elementos criados. */ 
 
-    4) Crie e coloque hooks useRef nos três elementos criados.
+    function Form() {
+      let ValorReais, CotacaoDolar, ConversaoMoeda
 
-    5) Escreva uma única função handleChange para interceptar a mudança 
-      nos dois inputs, efetuar o cálculo da conversão e atualizar o valor
-      de uma variável com o resultado.
+      const ValorReaisRef = React.useRef()
+      const CotacaoDolarRef = React.useRef()
+      const ConversaoMoedaRef = React.useRef()
 
-    6) Usando a variável que foram atualizada em handleChange, 
-      exiba na div de resultado o valor convertido.
+      // const [Resultado, setResultado] = React.useState("")
 
-    7) Observação: neste formulário não há o botão de enviar. Portanto, não é necessário
-      ter a função handleSubmit nem chamá-la no onSubmit do form.
+      /*5) Escreva uma única função handleChange para interceptar a mudança nos dois inputs, efetuar o cálculo da conversão e atualizar o valor de uma variável com o resultado. 
+      6) Usando a variável que foram atualizada em handleChange, exiba na div de resultado o valor convertido. 
+      7) Observação: neste formulário não há o botão de enviar. Portanto, não é necessário ter a função handleSubmit nem chamá-la no onSubmit do form. 
+      8) Faça o necessário para que o formulário seja renderizado ao exibir a página. */
 
-    8) Faça o necessário para que o formulário seja renderizado ao exibir a página.
+      function handleChange() {
 
-    */
+        ValorReais = ValorReaisRef.current.value
+        CotacaoDolar = CotacaoDolarRef.current.value 
+        
+        if ( ValorReais > 0 && CotacaoDolar > 0){
+          ConversaoMoeda = ValorReais / CotacaoDolar
+          ConversaoMoedaRef.current.textContent = ConversaoMoeda.toFixed(2) + " U$"
+        } else ConversaoMoedaRef.current.textContent = " 0,00$"  
+      
+      }
+
+      return(
+        <form>
+          <div>
+            <label>
+              Valor em Reais
+              <input type="number" ref={ValorReaisRef} onChange={handleChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              Valor em Dolar
+              <input type="number" ref={CotacaoDolarRef} onChange={handleChange} />
+            </label>
+          </div>
+          <div>
+             Resultado: <span ref={ConversaoMoedaRef}> </span>
+          </div>
+        </form>
+      )
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />)
   </script>
-  
 </body>
 </html>
