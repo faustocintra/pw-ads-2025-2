@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício 2</title>
+    <title>Exercício2 - Conversor de moedas</title>
     <style>
       body {
           font-family: Arial, sans-serif;
           display: flex;
-          justify-content: center;
-          align-items: center;
+          justify-content: left;
+          align-items: left;
           min-height: 100vh;
           background-color: #f0f2f5;
       }
@@ -112,15 +112,25 @@
         const resultadoRef = React.useRef()
 
         function handleChange(event){
-          valor = valorRef.current.value
-          cotacao = cotacaoRef.current.value
+          const valor = Number(valorRef.current.value)
+          const cotacao = Number(cotacaoRef.current.value)
           if(valor > 0 && cotacao > 0){
-            resultado = (valor/cotacao).toFixed(2)  
+            const resultado = Number((valor/cotacao).toFixed(2)) 
             resultadoRef.current.textContent = `$ ${resultado}`    
           }
           else {
             resultadoRef.current.textContent = `$0,00`
           }
+          /* 
+          Usando a função toLocalString() do JavaScript para exibir o resultado com a formatação e o símbolo de dólar
+          resultRef.current.textContent = resultado.toLocalString(
+            'en-US',              //tem que especificar o local e a moeda ele faz a formatação correspondente
+            {
+              style:'currency',  //formata como moeda
+              currency: 'USD'    //dólar americano 
+            }
+            )
+          */
           
         }
           return <>
