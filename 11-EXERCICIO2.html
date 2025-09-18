@@ -42,8 +42,15 @@
             const resultadoRef = React.useRef()
 
             function handleChange(event) {
-                let conversao = Number(dolarRef.current.value) <= 0 ? 0 : (Number(realRef.current.value) / Number(dolarRef.current.value)).toFixed(2)
-                resultadoRef.current.textContent = conversao + "$"
+                let conversao = Number(dolarRef.current.value) <= 0 ? 0 : Number(realRef.current.value) / Number(dolarRef.current.value)
+                //toLocaleString() -> padroniza o valor de acordo com os parâmetros
+                resultadoRef.current.textContent = conversao.toLocaleString(
+                    'en-US',
+                    {
+                        style:'currency',
+                        currency: 'USD'
+                    }
+                )
             }
 
             return <>
