@@ -50,14 +50,14 @@
                 } else {
                     resultado = (valor / cotacao).toFixed(2);
                 }
-                resultadoRef.current.textContent = `Valor em dólar = US$ ${resultado}`;
+                resultadoRef.current.textContent = `Valor em dólar = ${resultado.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`;
             }
 
             return (
                 <>
                     <h1>Formulário Conversão R$ ➔ US$</h1>
                     <form style={{
-                        border:" 3px solid black",
+                        border:"3px solid black",
                         width: "400px",
                         margin: "0 auto",
                         padding: "50px",
