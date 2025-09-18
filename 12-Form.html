@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function Form() {
+
+      //let valReais, cotDolar
+
+      // Criação das variáveis de estado
+      const [valReais, setValReais] = React.useState(0)
+      const [cotDolar, setCotDolar] = React.useState(0)
+
+      // ESTADO DERIVADO
+      // Uma variável que contém um cálculo feito sobre uma ou mais
+      // variáveis de estado
+      // O ESTADO DERIVADO pode (e deve) ser uma variável COMUM
+      const valorConvertido = valReais / cotDolar
+
+      return <>
+        <h1>Conversor de moedas</h1>
+        <form>
+          <div>
+            <label>
+              <span>Valor em reais:</span> <br />
+              <input 
+                type="number" 
+                onChange={ event => setValReais(Number(event.target.value)) } 
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              <span>Cotação do dólar:</span> <br />
+              <input 
+                type="number" 
+                onChange={ event => setCotDolar(Number(event.target.value)) } 
+              />
+            </label>
+          </div>
+          <div>
+            {
+              valorConvertido.toLocaleString(
+                'en-US',
+                { 
+                  style: 'currency',
+                  currency: 'USD'
+                }
+              )
+            }
+            </div>
+        </form>
+      </>
+    }
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />)
+  </script>
