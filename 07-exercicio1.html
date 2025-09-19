@@ -5,26 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <Style>
-        .cor1 {
-      color: darkblue;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    .cor2 {
-      color: darkred;
-      font-style: italic;
-      font-size: 16px;
-    }
-    .idade {
-      margin-top: 10px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      background: #f2f2f2;
-      border-radius: 6px;
-      width: fit-content;
-    }
-  </Style>
 </head>
 <body>
 
@@ -58,32 +38,7 @@
 				a idade que a pessoa terá ao final do ano, calculada por meio de
 				um cálculo simples (2025 menos o ano de nascimento informado).
     */
-
-        // Função de componente com props personalizadas
-    function Cadastro({nome, sobrenome, dia, mes, ano}) {
-      const idade = 2025 - ano
-      return (
-        <>
-          <p className="laranja">
-            {nome} {sobrenome}
-          </p>
-          <p className="azul">
-            {dia}/{mes}/{ano}
-          </p>
-          <div>
-            Idade ao final de 2025: {idade} anos
-          </div>
-        </>
-      )
-    }
-
-    // Container com duas pessoas de exemplo
-    const container = <>
-      <Cadastro nome="Abner" sobrenome="Jesus" dia={12} mes={6} ano={2005} />
-    </>
-
-    const root = ReactDOM.createRoot(document.getElementById('root'))
-    root.render(container)
+		
   </script>
   
 </body>
