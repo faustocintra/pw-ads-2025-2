@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bom{
+            color: green;
+            font-weight: bolder;
+        }
+
+        .ruim{
+            color: red;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const Filme = ({titulo, genero, nota}) => (
+            <>
+                <p>Titulo: {titulo}</p>
+                <p>Gênero: {genero}</p>
+                <p className={nota >= 7 ? "bom" : "ruim"}>
+                    Nota = {nota}    
+                </p>
+                <div>
+                    {nota >= 9 ? 
+                        "Excelente!" 
+                            : nota >=7 
+                                ? "Bom filme" 
+                                : "Precisa Melhorar"
+                    }
+                </div>
+            </>
+        )
+
+        const container = <>
+            <Filme titulo="Os vingadores" genero="ação/aventura" nota={9}/>
+            <Filme titulo="a bela e a fera" genero="animação/romance" nota={7}/>
+            <Filme titulo="O Último Mestre do Ar" genero="ação/fantasia" nota={5}/>
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(container);
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .quente{
+            color: red;
+            font-weight: bolder;
+        }
+
+        .frio{
+            color: blue;
+            font-style: italic;
+        }        
+    </style>
+
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const Clima = ({cidade, temperaturaAtual, umidade}) => (
+            <>
+                <p>Cidade: {cidade}</p>
+                <p className = {temperaturaAtual > 30 ? "quente" : "frio"}>
+                    Temperatura: {temperaturaAtual} ºC
+                </p>
+                <p>Umidade: {umidade}</p>
+                <div>
+                {temperaturaAtual > 30 
+                    ? "Muito calor!"        // condição1 verdadeira
+                    : temperaturaAtual >= 20 
+                            ? "Clima agradável!"   // condição2 verdadeira
+                            : "Tá frio!" // nenhuma das anteriores
+                }  
+                </div>
+            </>
+        )
+
+        const container = <>
+            <Clima cidade="Franca" temperaturaAtual={33} umidade={20} />
+            <Clima cidade="Rifaina" temperaturaAtual={15} umidade={60} />
+            <Clima cidade="São Paulo" temperaturaAtual={25} umidade={80} />
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(container);            
+    </script>
+</body>
+</html>

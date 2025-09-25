@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form(){
+            let peso, altura
+
+            const pesoRef = React.useRef()
+            const alturaRef = React.useRef()
+            const calcImcRef = React.useRef()
+            const classificacaoRef = React.useRef()
+
+            function handleChange(event){
+                const peso = Number(pesoRef.current.value)
+                const altura = Number(alturaRef.current.value)
+                
+                if(peso > 0 && altura > 0){
+                    const calcImc = peso / (altura * altura)
+                    calcImcRef.current.textContent = calcImc.toFixed(2)
+
+                    if (calcImc < 18.5) {
+                        classificacaoRef.current.textContent = "Abaixo do peso"
+                    } else if (calcImc < 24.9) {
+                        classificacaoRef.current.textContent = "Peso normal"
+                    } else if (calcImc < 29.9) {
+                        classificacaoRef.current.textContent = "Sobrepeso"
+                    } else {
+                        classificacaoRef.current.textContent = "Obesidade"
+                    } 
+                }
+            }
+
+            return <>
+                <h1>Calculadora imc</h1>
+                <div>
+                    <label>
+                        <span>Digite o Peso: </span>
+                        <input type="number" ref={pesoRef} onChange={handleChange}/>
+                    </label>
+                </div>
+                <br/>
+                <div>
+                    <label>
+                        <span>Digite a Altura: </span>
+                        <input type="number" ref={alturaRef} onChange={handleChange}/>
+                    </label>
+                </div>                
+                <div>
+                    <br/>
+                    <span>Resultado: </span>
+                    <span ref={calcImcRef}></span>
+                    <p ref={classificacaoRef}></p>                    
+                </div>
+            </>
+        }       
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Form />);
+    </script>
+    
+</body>
+</html>
