@@ -17,8 +17,8 @@
     /* Refazer o arquivo 10 usando variáveis de estado */
  
     function Form(){
-        const [nome, setNome] = React.useState(0)
-        const [maiusc, setMaiusc] = React.useState(0)
+        const [nome, setNome] = React.useState('')
+        const [maiusc, setMaiusc] = React.useState(false)
         const resultado = maiusc ? nome.toUpperCase() : nome
  
         function handleSubmit(event){
@@ -27,13 +27,12 @@
             }
  
         return <>
+        <h1> Formulário React Refeito </h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>
                         <span>Nome:</span> <br />
-                        <input                          
-                            onChange = {event => setNome((event.target.value))}
-                        />    
+                        <input onChange = {event => setNome((event.target.value))} />    
                     </label>    
                 </div>
                 <div>
