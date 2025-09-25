@@ -46,22 +46,21 @@
 				a idade que a pessoa terá ao final do ano, calculada por meio de
 				um cálculo simples (2025 menos o ano de nascimento informado).
     */
-    const Container = ({nome, sobrenome, dia, mes, ano}) => (
-      <> 
-        <p className='cor1'> {nome} {sobrenome} </p>
-        <p className='cor2'> {dia} / {mes} / {ano} </p>
-        
-        <div> {CalculoIdade(ano)} anos em 2025 </div>
-            
-      </>
-  )
 
-    const CalculoIdade = (ano) => 2025 - ano
+    const Personalizada = ({nome, sobrenome, dia, mes, ano}) => <>
+      <p className="cor1">nome={nome} sobrenome={sobrenome}</p>
+      <p className="cor2">dia={dia} mes={mes} ano={ano}</p>
+      <div>idadeFInal={2025-ano}</div>
+    </>
 
-    const elemento = <Container nome="Raimundo" sobrenome="Silva" dia={15} mes={8} ano={1980} />
+    const Container =
+    <> 
+     <Personalizada nome="Rai" sobrenome="César" dia={12} mes={8} ano={2005}/>  
+    </>
+
     const root = ReactDOM.createRoot(document.getElementById('root'))
 
-    root.render(elemento)
+    root.render(Container)
   </script>
   
 </body>

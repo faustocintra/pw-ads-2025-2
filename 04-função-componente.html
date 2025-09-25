@@ -27,9 +27,9 @@
 
      <script type="text/babel">
         // em react, os elementos construidos dinamicamente são chamados COMPONENTES e podem ser produzidos por funções
-        // uma função de componente noReact possui três caracteristicas: 1° -> seu nome começa com letra maiuscula
-        // 2° podem receber porps como parâmetro, entre {}
-        // 3° retornam um único elmento, o qual pode ser um container para outros elementos
+        // uma função de componente no React possui três caracteristicas: 1° -> seu nome começa com letra maiuscula
+        // 2° podem receber props como parâmetro, entre {}
+        // 3° retornam um único elemento, o qual pode ser um container para outros elementos
 
         // exemplo de função componente em React
         function Saudacao({nome, msg}){
@@ -43,7 +43,8 @@
         const saudacao2 = <Saudacao nome = "Seu Bita" msg= "O sol já nasceu lá na fazendinha" />
 
         // container em JSX
-        // <></> é um pseudoelemento do React chamado FRAGMENT. Ele permite agrupar vários outros elementos sem gerar elemento HTML adicional (como uma div, p. ex.) no resultado renderizado
+        // <></> é um pseudoelemento do React chamado FRAGMENT. 
+        // Ele permite agrupar vários outros elementos sem gerar elemento HTML adicional (como uma div, p. ex.) no resultado renderizado
         const container = 
             <> 
                 {saudacao1}

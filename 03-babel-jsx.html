@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div.formata{
+        div.formata {
             font-family: Consolas, monospace;
             color: blue;
             background: powderblue;
@@ -17,11 +18,12 @@
         }
     </style>
 </head>
+
 <body>
-     <!-- scripts com react importados -->
+    <!-- scripts com react importados -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
 
     <div id="root"></div>
 
@@ -39,7 +41,7 @@
         // div criada com sintaze JSX, a qual será processada pelo Babel e transpilada para Javascript puro
         const div2 = <div id="div2" className='formata'>Div criada com JSX</div>
 
-        // container
+        // container (react cru)
         const container = React.createElement(
             'div',
             {
@@ -48,7 +50,7 @@
             }
         )
 
-        // capturando a div root para fazer dela nosso de inserção
+        // capturando a div root para fazer dela nosso ponto de inserção
         const root = ReactDOM.createRoot(document.getElementById('root'))
 
         // renderizando o container com seus filhos
@@ -58,4 +60,5 @@
         // o babel traduz a sintaxe jsx em javascript
     </script>
 </body>
+
 </html>

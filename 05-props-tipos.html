@@ -28,7 +28,7 @@
         // PROPS GENÉRICAS E PROPS PERSONALIZADAS: 
         // uma função de componente React pode receber dois tipos de props:
         // 1° Props GENÉRICAS: são passados por meio de um único objeto e normalmente são aplicadas no componente por meio de espalhamento 
-        // 2° Props PERSONALIZADAS: são passadas nominalmente à função. Somente as props nomeadas são processadas dentro docomponente
+        // 2° Props PERSONALIZADAS: são passadas nominalmente à função. Somente as props nomeadas são processadas dentro do componente
 
         // função de componente que recebe props genéricos
 
@@ -50,10 +50,12 @@
 
         const container = 
             <>
+                {/*chamada de função de componente génerica */}
                 <Mensagem {...propsMsg1}/>
      
-                {/* no componente Mensagem abaixo, todas as props serão recebidas e processadas */}
+                {/* no componente Mensagem abaixo, todas as props serão recebidas manualmente e processadas */}
                 <Mensagem id="msg2" title="segunda mensagem" teste="testando"> Doe sangue! </Mensagem>
+
 
                 {/* já no componente Aviso a seguir, apenas as props id e children serão processadas, as demais serão ignoradas*/}
                 <Aviso id="aviso1" title="Segundo aviso" teste="testando"> Atravesse sempre na faixa pedestres </Aviso>
