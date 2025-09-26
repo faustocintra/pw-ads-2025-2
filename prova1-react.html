@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function Form() {
+
+      const raioMaiorRef = React.useRef()
+      const raioMenorRef = React.useRef()
+      const resultadoRef = React.useRef()
+
+      function handleChange() {
+        const raioMaior = Number(raioMaiorRef.current.value)
+        const raioMenor = Number(raioMenorRef.current.value)
+
+        // Calculo dos raios
+        if (raioMaior > 0 && raioMenor > 0) {
+          const area = raioMaior + raioMenor * Math.PI
+
+          // Exibe resultado
+          resultadoRef.current.textContent = 'Área: ' + area.toLocaleString('pt-br', {minimumFractionDigits: 4, maximumFractionDigits: 4})}
+      }
+
+      return <>
+        <h1>Cálculo da área de uma elipse</h1>
+        <form>
+          <div>
+            <label>
+              <span>Medida do raio maior:</span> <br />
+              <input type="number" ref={raioMaiorRef} onChange={handleChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              <span>Medida do raio menor:</span> <br />
+              <input type="number" ref={raioMenorRef} onChange={handleChange} />
+            </label>
+          </div>
+          <div ref={resultadoRef} />
+        </form>
+      </>
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />)
+
+  </script>
+</body>
+</html>
