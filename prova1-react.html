@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova 1 - André</title>
+</head>
+<body style="text-align: center;">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        //FORMULÁRIO REACT - USEI hook useRef -> Cálculo da área da elipse
+
+        function Form() {
+        // Referências: Elas vão ser usadas para pegar os valores dos inputs no formulário e para mostrar o resultado
+        const medRaioMaiorRef = React.useRef();
+        const medRaioMenorRef = React.useRef();
+        const areaRef = React.useRef();
+
+        /*
+        Essa função handleChange é chamada sempre que o usuário digita nos inputs
+        */
+        // --> Funções precisam estar dentro do componente!
+        function handleChange() {
+            const raioMaior = Number(medRaioMaiorRef.current.value);
+            const raioMenor = Number(medRaioMenorRef.current.value);
+            let resultado;
+            //Aqui é uma verificação para ver se algum campo está vazio, se estiver o resultado já fica = 0
+            if (!raioMaior || !raioMenor) {
+                resultado = 0;
+            } else {
+                resultado = (Math.PI * raioMaior * raioMenor) // Calculando a área da elipse
+            }
+            areaRef.current.textContent = `${resultado.toLocaleString('pt-BR', {
+                minimumFractionDigits: 4,
+                maximumFractionDigits: 4
+            })} cm²`;
+        }
+
+        /*
+        Essa função handleSubmit é chamada quando o botão "Calcular" é 
+        clicado.
+        Assim que alguém clicar no botão, ela vai evitar o recarregamento da página e tbm dar um alert com o que eu passar no "resultado"
+        */
+        function handleSubmit(event) {
+            event.preventDefault();
+            const resultado = areaRef.current.textContent;
+            alert(`O raio maior é = ${medRaioMaiorRef.current.value} cm² e o raio menor é = ${medRaioMenorRef.current.value} cm². Então a área da elipse é ${resultado}`);
+        }
+
+        // JSX do formulário em React
+        return (
+            <>
+                <h1>PROVA 1 REACT - Cálculo da área da elipse</h1>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>
+                            <span><b>Raio Maior:</b></span>
+                            <input 
+                            type="number" 
+                            ref={medRaioMaiorRef} 
+                            onInput={handleChange} 
+                            style={{ 
+                                marginLeft: "8px"    
+                            }}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <span><b>Raio Menor:</b></span>
+                            <input 
+                            type="number" 
+                            ref={medRaioMenorRef} 
+                            onInput={handleChange} 
+                            style={{ 
+                                marginLeft: "8px",
+                                marginTop: "8px",
+                                marginBottom: "8px"   
+                            }} 
+                            />
+                        </label>
+                    </div>
+
+                    <div>
+                        <input 
+                        type="submit" 
+                        value="Calcular"
+                        style={{
+                            padding: "8px 16px",
+                            fontSize: "12px",
+                            fontWeight: "bold",
+                            cursor: "pointer"
+                        }}
+                        />
+                    </div>
+                </form>
+                <div
+                    id="resultado"
+                    ref={areaRef}
+                    style={{
+                        marginTop: "18px",
+                        fontSize: "22px",
+                        color: "#1371ff",
+                        fontWeight: "bold",
+                        textAlign: "center",
+                        minHeight: "28px"
+                    }}
+                ></div>
+            </>
+        );
+    }
+
+    //Query Selector é equivalente a document.getElementById() do React
+    const root = ReactDOM.createRoot(document.querySelector("#root"));
+    root.render(<Form />);
+
+    </script>
+</body>
+</html>
