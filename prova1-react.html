@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prova (26/09/2025)</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<div id="root"> </div>
+
+<script type= "text/babel">
+    /*
+        Refazer exercicio de referÊncia, mas usando React
+    */
+   function Form(){
+
+        //Criação variável 
+        let Raio_menor, Raio_maior, Area
+
+        /*Criando e colocando hooks useRef nos três elementos criados*/
+        const RaiomenorRef = React.useRef()
+        const RaiomaiorRef = React.useRef()
+        const AreaRef = React.useRef()
+
+        /*função handleChange para interceptar a mudança 
+        nos dois inputs, efetuar o cálculo da conversão e atualizar o valor
+        de uma variável com o resultado. */
+        function handleChange(event) {
+        /*
+          Observe: <ref>.current equivale a
+          document.getElementById('id')
+        */
+
+        // Usando Number() para garantir que o resultado do cálculo será numérico
+        Raio_menor = Number(RaiomenorRef.current.value)
+        Raio_maior = Number(RaiomaiorRef.current.value)
+        
+        /*Realiza a operação apresentada no código de referência de multiplicar menor pelo maior e depois multiplicar por Math.pi*/
+        Area = Raio_maior * Raio_menor * Math.PI
+        AreaRef.current.textContent = Area.toFixed(2)    
+      }   
+
+      return <>
+        <h1> Formulário Prova ( Cálculo Área de Elipse) </h1>
+        <form>
+          <div>
+            <label>
+              <span>Medida do Raio MAIOR (R$):</span> <br />
+              {/* 
+                Observe: ref está sendo usado em vez de id.
+                No lugar de addEventListener(), estamos associando
+                a função manipuladora de eventos diretamente no
+                componente  (Anotação da aula 11-exercicio2.html)
+              */}
+
+              {/*Input numérico para Raia Maior*/}
+              <input type="number" ref={RaiomaiorRef} onChange={handleChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              <span>Medida do Raio MENOR :</span> <br />
+                {/*Input numérico para Raia Menor*/}
+              <input type="number" ref={RaiomenorRef} onChange={handleChange} />
+            </label>
+          </div>
+          {/*DIV para exibir os resultados*/}
+          <div className="resultado-box" >
+              Resultado: <span ref={AreaRef}> </span>
+          </div>
+        </form>
+      </>
+    }
+
+    // querySelect('#root') é equivalente a getElementById('root')
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />)
+  </script>
+</body>
+</html>
