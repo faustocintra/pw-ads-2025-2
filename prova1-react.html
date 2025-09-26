@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da área de uma elipse</title>
+</head>
+
+<body>
+    <!-- scripts com react importados -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- onde será inserido os elemntos react criados dentro de script -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form() {
+
+
+            // Criação das variáveis de estado
+            const [raioMenor, setRaioMenor] = React.useState(0)
+            const [raioMaior, setRaioMaior] = React.useState(0)
+
+            // estado derivado
+            let area
+
+            // calculo que é atribuido ao estado variado
+            area = Number(raioMaior) * Number(raioMenor) * Math.PI
+
+            // retorna o formulário
+            return <>
+                <h1>Cálculo da área de uma elipse</h1>
+                <form>
+                    <div>
+                        <label>
+                            <span>Medida do raio maior: </span> <br />
+                            <input type="number" 
+                            onChange={ event => setRaioMaior(Number(event.target.value)) } />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <span>Medida do raio menor: </span> <br />
+                            <input type="number" 
+                            onChange={ event => setRaioMenor(Number(event.target.value)) } />
+                        </label>
+                    </div>
+                        <div>
+                            {
+                                area.toLocaleString(
+                                    'pt-br',
+                                    {
+                                        minimumFractionDigits: 4,
+                                        maximumFractionDigits: 4
+                                    }
+                                )
+                            }
+                        </div>
+                </form>
+            </>
+        }
+
+        // querySelect('#root') é equivalente a getElementById('root')
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+        // renderiza o formulário
+        root.render(<Form />)
+    </script>
+</body>
+
+</html>
