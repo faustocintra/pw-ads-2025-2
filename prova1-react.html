@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function Form() {
+
+      /* Criando e colocando hooks useRef nos três elementos criados. */
+      const RaioMaiorRef = React.useRef()
+      const RaioMenorRef = React.useRef()
+      const resultadoRef = React.useRef()
+
+      /* Função handleChange para interceptar a mudança 
+      nos dois inputs, efetuar o cálculo da área e atualizar o valor
+      de uma variável com o resultado. */
+      function handleChange(event) {
+        // Usando Number() para garantir que o resultado do cálculo será numérico
+        const RaioMaior = Number(RaioMaiorRef.current.value)
+        const RaioMenor = Number(RaioMenorRef.current.value)
+
+        // Cálculo da área
+        const area = RaioMaior * RaioMenor * Math.PI
+
+        resultadoRef.current.textContent  = area.toLocaleString('pt-br', {
+            minimumFractionDigits: 4,
+            maximumFractionDigits: 4
+        })
+      }
+
+      return <>
+        <h1>Cacular área de uma elipse</h1>
+        <form>
+          {/* Criando um formulário em React com um input numérico com o label "Raio Maior" */}
+          <div>
+            <label>
+              <span>Raio maior:</span> <br />
+              <input type="number" ref={RaioMaiorRef} onChange={handleChange} />
+            </label>
+          </div>
+          {/* Outro input numérico com o label "Raio menor" */}
+          <div>
+            <label>
+              <span>Raio menor:</span> <br />
+              <input type="number" ref={RaioMenorRef} onChange={handleChange} />
+            </label>
+          </div>
+          {/* Div para exibir o resultado do cálculo da área */}
+          <div>
+            <label>
+                <h3>Resultado:</h3>
+                <p ref={resultadoRef}></p>
+            </label>
+          </div>
+        </form>
+      </>
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />)
+
+  </script>
+  
+</body>
+</html>
