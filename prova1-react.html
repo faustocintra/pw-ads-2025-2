@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da área de uma elipse</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form(){
+            //declaração de variaveis
+            let raioMaior, raioMenor
+
+            const raioMaiorRef = React.useRef()
+            const raioMenorRef = React.useRef()
+            const areaRef = React.useRef()
+
+            function handleChange(event){
+                raioMaior = raioMaiorRef.current.value
+                raioMenor = raioMenorRef.current.value
+
+                //calculo da area da elipse, utilizando number para garantir que o resultado seja numerico               
+                let area = Number(raioMaior) + Number(raioMenor) * Math.PI
+                //localizando o formato da string para pt-br e estabelecendo quantidade de digitos mininos e maximos 
+                areaRef.current.textContent = 'Área: ' + area.toLocaleString('pt-br', {minimumFractionDigits: 4, maximumFractionDigits: 4})
+            }
+
+            return <>
+                <h1>Cálcula da área de uma elipse</h1>
+                {/*formulario com inputs*/}
+                <form>
+                    <div>
+                        <label>
+                            <span>Medida do raio maior: </span><br/>
+                            <input type="number" ref={raioMaiorRef} onChange={handleChange} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <span>Medida do raio menor: </span><br/>
+                            <input type="number" ref={raioMenorRef} onChange={handleChange} />
+                        </label>
+                    </div>
+                    <div ref={areaRef}></div>
+                </form>
+            </>
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Form/>);            
+    </script>
+    
+</body>
+</html>
