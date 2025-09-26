@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da área de uma elipse</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+  <div id="root"></div>
+  
+  <script type="text/babel">
+    const { useState } = React;
+
+    function Elipse() {
+      //Armazenar os valores dos raios
+      const [raioMaior, setRaioMaior] = useState('');
+      const [raioMenor, setRaioMenor] = useState('');
+
+      //Cálculo da área da elipse
+      const area = raioMaior && raioMenor 
+        ? (Number(raioMaior) * Number(raioMenor) * Math.PI).toLocaleString('pt-BR', {
+            minimumFractionDigits: 4,
+            maximumFractionDigits: 4
+          })
+        : '';
+
+      return (
+        <div>
+          <h1>Cálculo da área de uma elipse</h1>
+          <form>
+            {/* Campo do raio maior */}
+            <div>
+              <label>
+                <span>Medida do raio maior:</span><br />
+                <input 
+                  type="number"
+                  value={raioMaior}
+                  onChange={e => setRaioMaior(e.target.value)} 
+                />
+              </label>
+            </div>
+
+            {/* Campo do raio menor */}
+            <div>
+              <label>
+                <span>Medida do raio menor:</span><br />
+                <input 
+                  type="number"
+                  value={raioMenor}
+                  onChange={e => setRaioMenor(e.target.value)} 
+                />
+              </label>
+            </div>
+
+            {/* Exibe o resultado se ambos os raios tiverem valor */}
+            <div id="resultado">
+              {area && <p>Área: {area}</p>}
+            </div>
+          </form>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Elipse />);
+  </script>
+</body>
+</html>
