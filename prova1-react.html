@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Calcular elipse</title>
+</head>
+<body>
+ <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+ <div id="root"></div>
+
+ <script type="text/babel">
+  function Form() {
+
+   // copiei o código do arquivo 12 e mantive o cabeçalho padrão, alterei apenas o nome da página
+
+   const [raioMaior, setRaioMaior] = React.useState(0)
+   const [raioMenor, setRaioMenor] = React.useState(0)
+
+   // aqui comecei a alterar as variáveis para que o calculo de elipse ficasse certo
+
+   const area = (raioMaior * raioMenor) * Math.PI
+
+   // aqui alterei a variavel que recebe o calculo e chamei a biblioteca math (nao entendi pq nao tive que importar ela antes)
+
+   return <>
+    <h1>Calculo de área de elipse</h1>
+    <form>
+     <div>
+      <label>
+       <span>Informe o maior raio da elipse (em centímetros):</span> <br />
+       <input 
+        type="number" 
+        onChange={ event => setRaioMaior(Number(event.target.value)) } 
+        // alterei o nome do formulário e pedi a inserção de dados (em centimetros para a saída ser em centimetros quadrados)
+       />
+      </label>
+     </div>
+     <div>
+      <label>
+       <span>Informe o menor raio da elipse (em centímetros):</span> <br />
+       <input 
+        type="number" 
+        onChange={ event => setRaioMenor(Number(event.target.value)) } 
+        // mesma coisa do comentário anterior
+       />
+      </label>
+     </div>
+     <div> <br /> A área da elipse informada é { }
+      {
+       area.toLocaleString(
+        'pt-br',
+        { 
+         minimumFractionDigits: 4,
+         maximumFractionDigits: 4
+        }
+       )
+      } cm²
+      </div>
+    </form>
+   </>
+  }
+  // formatei o resultado da maneira do modelo, inseri uma quebra de linha e dei um espaço com colchete (nao estava dando certo só o espaço)
+  const root = ReactDOM.createRoot(document.querySelector('#root'))
+  root.render(<Form />)
+  // finalizando renderizando tudo (como padrão)
+ </script>
+ 
+</body>
+</html>

@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
 </head>
 <body>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  
-  <div id="root"></div>
+ <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+ <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+ <div id="root"></div>
 
-  <script type="text/babel">
-    /*
-      Refazer o arquivo 10 usando variáveis de estado.
-    */
-  </script>
-  
+ <script type="text/babel">
+  function Form() {
+   // 1. Criando variáveis de estado
+   const [nome, setNome] = React.useState('')
+   const [maiusc, setMaiusc] = React.useState(false)
+
+   // 2. Calculando o nome a ser exibido com base no estado
+   const nomeExibido = maiusc ? nome.toUpperCase() : nome
+
+   // 3. Manipulador de envio de formulário
+   function handleSubmit(event) {
+    event.preventDefault()
+    alert(`Olá, ${nomeExibido}!`)
+   }
+
+   return (
+    <>
+     <h1>Formulário React</h1>
+     <form onSubmit={handleSubmit}>
+      <div>
+       <label>
+        <span>Nome:</span> <br />
+        <input 
+         type="text"
+         value={nome}
+         onChange={event => setNome(event.target.value)}
+        />
+       </label>
+      </div>
+      <div>
+       <label>
+        <input 
+         type="checkbox"
+         checked={maiusc}
+         onChange={event => setMaiusc(event.target.checked)}
+        />
+        <span>Colocar o nome em maiúsculas</span>
+       </label>
+      </div>
+      <div>
+       {nomeExibido}
+      </div>
+      <div>
+       <button type="submit">Enviar</button>
+      </div>
+     </form>
+    </>
+   )
+  }
+
+  const root = ReactDOM.createRoot(document.querySelector('#root'))
+  root.render(<Form />)
+ </script>
 </body>
 </html>
