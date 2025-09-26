@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+
+<html lang="pt-br"> 
+
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Cálculo da área de uma elipse</title> 
+</head> 
+<body> 
+
+    <h1>Cálculo da área de uma elipse</h1> 
+    <form> 
+        <div> 
+            <label> 
+                <span>Medida do raio maior:</span><br> 
+                <input id="raio-maior" typr="number">
+            </label> 
+        </div> 
+        <div>
+            <label>
+                <span>Medida do raio menor:</span><br>
+                <input id=""raio-menor" type=""number">
+            </label>
+        </div>
+        <div id="resultado"></div>
+    </form> 
+
+    <script>
+        let raioMaior, raioMenor, area
+
+    function onChange(event) { 
+        raioMaior = document.getElementById('raioMaior').value
+        raioMenor = document.getElementById('raioMenor').value
+        area = Number(raioMaior)* Number(raioMenor)* Math.PI
+        document.getElementById('resultado').textContent =
+        'área: ' + area.toLocateString('pt-br, {
+            minimumFractionDigits: 4,
+            maximumFractionDigits: 4
+        })
+    }
+
+    document.getElementById('raio-maior').addEventListener('input', onChange)
+    document.getElementById('raio-menor').addEventListener('input', onChange)
+  </script> 
+</body> 
+</html> 

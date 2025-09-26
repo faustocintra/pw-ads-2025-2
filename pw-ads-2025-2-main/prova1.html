@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálculo da área de uma elipse</title>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+    
+    function Form() {
+
+    /* hooks useRef nos três elementos criados. */
+      const raioMaior = React.useRef()
+      const raioMenor = React.useRef()
+      const resultadoRef = React.useRef()
+
+      /* Uma função handleChange para interceptar a mudança 
+      nos dois inputs, efetuar o cálculo e atualizar o valor
+      de uma variável com o resultado. */
+      function handleChange(event) {
+        // Usando Number() para garantir que o resultado do cálculo será numérico
+        const raioMaior = Number(raioMaiorRef.current.value)
+        const raioMenor = Number(raioMenorRef.current.value)
+        // Cálculo da area
+        const area = raioMaior * raioMenor
+        /*Usando a variável que foram atualizada em handleChange, 
+        exiba na div de resultado o valor calculado. */
+        // Usando a função toLocaleString() do JavaScript para exibir o resultado
+        resultadoRef.current.textContent = area.toLocaleString(
+          'pt-br'
+        )}
+
+      return <>
+        <h1>Cálculo da área de uma elipse</h1>
+        <form>
+            {/* 1) Um formulário em React e um input numérico com o label "raioMaior". */}
+          <div>
+            <label>
+              <span>RaioMaior:</span><br />
+              <input type="number" ref={raioMaior} onChange={handleChange} />
+            </label>
+          </div>
+          {/* 2) Outro input numérico com o label "raioMenor". */}
+          <div>
+            <label>
+              <span>RaioMenor:</span><br />
+              <input type="number" ref={raioMenor} onChange={handleChange} />
+            </label>
+          </div>
+          {/* 3) Uma div para exibir o resultado do calculo. */}
+          <div ref={resultadoRef} />
+        </form>
+      </>
+    }
+
+    /*
+    8) O necessário para que o formulário seja renderizado ao exibir a página.
+    */
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<Form />)
+
+  </script>
+  
+</body>
+</html>
