@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form(){
+            const [idade, setIdade] = React.useState(0)
+        
+            const resultado = idade < 18 
+                                ? "Você é menor de idade"
+                                : idade < 59 
+                                    ? "você é adulto"
+                                    : "você é idoso"
+
+            function handleSubmit(event){
+                event.preventDefault()
+                alert(resultado)
+            }
+
+            return <>
+                <h1>Classificação de idade</h1>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>
+                            <span>Digite sua idade: </span>
+                            <input type="number" onChange={event => setIdade(Number(event.target.value))}/>
+                        </label>
+                    </div>
+                    <div>
+                        <span>Classificação: </span>
+                        <span>{resultado}</span>
+                    </div>
+                    <div>
+                        <button type="submit">Verificar</button>
+                    </div>
+                </form>
+            
+            </>
+        }
+
+        
+
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Form/>);  
+    </script>
+    
+</body>
+</html>

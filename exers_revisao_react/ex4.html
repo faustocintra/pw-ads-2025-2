@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form(){
+            let celsius
+
+            const celsiusRef = React.useRef() 
+            const farenhRef = React.useRef()
+            const kelvinRef = React.useRef()        
+
+            function handleChange(event){
+                celsius = Number(celsiusRef.current.value)
+
+                let farenh = (celsius * (9/5)) + 32
+                farenhRef.current.textContent = farenh.toFixed(2) + " ºF" 
+                let kelvin = celsius + 273.15
+                kelvinRef.current.textContent = kelvin.toFixed(2) + " K"
+            }
+
+            return <>
+                <h1>Conversor de Temperatura</h1>
+                <div>
+                    <label>
+                        <span>Temperatura em Celsius: </span>
+                        <input type="number" ref={celsiusRef} onChange={handleChange}/>
+                    </label>
+                </div>
+                <div>
+                    <p ref={farenhRef}></p>
+                    <p ref={kelvinRef}></p>
+                </div>
+            </>
+        }
+
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Form/>);  
+    </script>
+
+</body>
+</html>

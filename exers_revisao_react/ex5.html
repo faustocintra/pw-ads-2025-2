@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form(){
+            //variaveis
+            const [num, setNum] = React.useState(0)
+            const [quad, setQuad] = React.useState(false)
+
+            const resultado = quad ? num * num : num
+
+            function handleSubmit(event){
+                event.preventDefault()
+                alert(`Resultado = ${resultado}`)
+            }
+
+            return <>
+                <h1>Cálculo numero ao quadrado</h1>
+                    <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>
+                            <span>Digite um número: </span>
+                            <input type="number" onChange={event => setNum(Number(event.target.value))}/>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" onChange={event => setQuad(event.target.checked)} />
+                            <span>Calcular o numero ao quadrado</span>
+                        </label>
+                    </div>
+                    <div>{resultado}</div>
+                    <div>
+                        <button type="submit">Calcular</button>
+                    </div>
+                </form>
+            </>
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Form/>);  
+    </script>
+    
+</body>
+</html>
