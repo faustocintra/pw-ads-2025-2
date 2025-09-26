@@ -18,7 +18,7 @@ function calcArea(base, altura, tipo = 'R') {
   }
 }
 
-console.log(`Área triângulo 10x30: ${calcArea(10, 30, 'T')}`)
+console.log(`Área triângulo 10x30: ${calcArea(10, 30, 'T')}`) 
 console.log(`Área elipse (círculo) 7,5x7,5: ${calcArea(7.5, 7.5, 'E')}`)
 console.log(`Área retângulo 12,8x15,5: ${calcArea(12.8, 15.5, 'R')}`)
 console.log(`Área forma inválida 8x17: ${calcArea(8, 17, 'H')}`)

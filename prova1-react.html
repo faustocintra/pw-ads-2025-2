@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da área de uma elipse</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
+ 
+    <div id="root"></div>
+ 
+    <script type = "text/babel"> 
+
+    /* 'const' no lugar de 'function'. Com React quem cria o formulário é o próprio javascript */
+    const Form = () => {      
+        let raioMaior, raioMenor, area
+    /*
+        As variáveis de estado servem para manter o estado atual para que a nova chamada da função não perca o que foi adicionado na vez anterior
+        Ref é um tipo de React Hook
+        Ref faz a função de 'id' criando referência para os elementos e permite criar cópias do mesmo formulário 
+    */ 
+        const raioMaiorRef = React.useRef()       
+        const raioMenorRef = React.useRef()
+        const areaRef = React.useRef()
+
+        function handleChange(){
+            const raioMaior = Number(raioMaiorRef.current.value)
+            const raioMenor = Number(raioMenorRef.current.value)
+            const area = Number((raioMaior) * (raioMenor) * (Math.PI).toFixed(4))
+
+            areaRef.current.textContent = area.toLocaleString ( //Usando a função toLocalString() do JavaScript para exibir o resultado com a formatação desejada
+                'pt-br',{                                        //máximo e mínimo de números permitidos para entrada  
+                    minimumFractionDigits: 4,
+                    maximumFractionDigits: 4
+                } 
+            )
+        }    
+            
+        return <>
+            <h1>Cálculo da área de uma elipse</h1>
+            <form>
+                <div>
+                    <label>
+                        <span>Medida do raio maior</span> <br />
+                         {/*função manipuladora de eventos associada diretamente no componente*/}
+                        <input type="number" ref={raioMaiorRef} onInput={handleChange} />                     
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Medida do raio menor</span> <br />                        
+                        <input type="number" ref={raioMenorRef} onInput={handleChange} />
+                    </label>
+                </div>      
+                <div>
+                    <span>Resultado</span>
+                        <div ref = {areaRef} />                   
+                </div>         
+            </form>    
+        </>
+    }
+     //Capturando a div root para fazer dela nosso ponto de inserção
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+    //renderizando o Form
+    root.render(<Form/>) 
+        
+    </script>
+</body>
+</html>

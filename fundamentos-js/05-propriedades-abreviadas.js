@@ -24,7 +24,7 @@ const user2 = {
 }
 console.log(user2)
 
-// Um objeto pode mesclar proproedades abreviadas e não abreviadas
+// Um objeto pode mesclar propriedades abreviadas e não abreviadas
 const user3 = {
   fullname,
   username,

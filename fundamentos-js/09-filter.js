@@ -1,16 +1,4 @@
 /*
-<<<<<<< HEAD
-O método de vetores filter() cria um NOVO VETOR contendo apenas os elementos
-que atendam ao critério apresentado pela função passada como parâmetro
-*/
-
-const numeros = [12,19,3,-4,13,-11,15,-1,0]
-const frutas = ['laranja', 'abacaxi', 'maçã', 'uva', 'jabuticaba', 'maracujá']
-
-// Cria um novo vetor apenas com os números negativos
-console.log('Apenas números negativos:',
-    numeros.filter(n => n < 0)
-=======
   O método de vetores filter() cria um NOVO VETOR contendo
   apenas os elementos que atendam ao critério apresentado
   pela função passada como parâmetro
@@ -22,12 +10,10 @@ const frutas = ['laranja', 'abacaxi', 'maçã', 'uva', 'jabuticaba', 'maracujá'
 // Cria um novo vetor apenas com os números negativos
 console.log('Apenas números negativos:', 
   numeros.filter(n => n < 0)
->>>>>>> 7a116007e0028752c4637287f6a47842415ab718
 )
 
 // Cria um novo vetor apenas com os números pares
 console.log('Apenas números pares:',
-<<<<<<< HEAD
     numeros.filter(n => n % 2 === 0)
 )
 
@@ -46,12 +32,6 @@ console.log('Apenas frutas que terminam com "r":',
     frutas.filter(el => el.slice(-1) === 'r')
 )
 
-
-
-=======
-  numeros.filter(i => i % 2 === 0)
-)
-
 // Cria um novo vetor apenas com números maiores que 20
 console.log('Apenas números maiores que 20:',
   numeros.filter(x => x > 20)
@@ -66,4 +46,4 @@ console.log('Apenas frutas com inicial "m":',
 console.log('Apenas frutas que terminam em "r":',
   frutas.filter(fru => fru.slice(-1) === 'r')
 )
->>>>>>> 7a116007e0028752c4637287f6a47842415ab718
+
