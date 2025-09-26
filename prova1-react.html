@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id = "root"></div>
+
+    <script type = "text/babel">
+        function Form(){
+
+            // varíaveis de estado que permitem o componente
+            // a reagir a mudanças de estado 
+            const [raioMaior, setRaioMaior] = React.useState(0)
+            const [raioMenor, setRaioMenor] = React.useState(0)
+            
+            
+            // uma variável que contem calculos que dependem de variáveis de estado 
+            // deve ser feito utilizando variável comum
+            const resultado = Number(raioMaior) * Number(raioMenor) * Math.PI
+            
+            return <>
+            <h1> Cálculo da área de uma elipse</h1>
+            <form>
+                <div>
+                    <label>
+                        <span>Medida do raio maior: </span><br/>
+                        <input type = "number"
+                        onChange={event => setRaioMaior(Number(event.target.value))}
+                        // event.target.value permite capturar o valor do elemento HTML
+                        // que causou o evento
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Medida do raio menor: </span><br/>
+                        <input type="number"
+                        onChange={event => setRaioMenor(Number(event.target.value))}
+                        // event.target.value permite capturar o valor do elemento HTML
+                        // que causou o evento
+                        />
+                    </label>
+                </div>
+                <div>
+                    {'Área: ' +
+                    resultado.toLocaleString('pt-br',{
+                    minimumFractionDigits:4,
+                    maximumFractionDigits:4})
+                }
+                </div>
+            </form>
+        </>
+        }
+        const root = ReactDOM.createRoot(document.querySelector("#root"))
+        root.render(<Form/>)
+    </script>
+</body>
+</html>
