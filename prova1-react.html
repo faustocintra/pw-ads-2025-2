@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da área de uma elipse</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Form(){
+            // Variáveis de estado
+            const [raioMaior, setRaioMaior] = React.useState(0)
+            const [raioMenor, setRaioMenor] = React.useState(0)
+            // Estado derivado
+            // Calcula a área
+            const area = raioMaior * raioMenor * Math.PI
+
+            return <>
+                <h1>Cálculo da área de uma elipse</h1>
+                <form>
+                    <div>
+                        <span>Medida do raio maior:</span>
+                        {/* Pede o valor do raio maior */}
+                        <input 
+                            type="number" 
+                            onChange={event => setRaioMaior(Number(event.target.value))} 
+                        />
+                    </div>
+                    <div>
+                        <span>Medida do raio menor:</span>
+                        {/* Pede o valor do raio maior */}
+                        <input 
+                            type="number" 
+                            onChange={event => setRaioMenor(Number(event.target.value))} 
+                        />
+                    </div>
+                    {/* Mostra resultado da área e limita a qtde de casas mostradas */}
+                    <div>
+                        {
+                            area.toLocaleString(
+                                'pt-br',
+                                { 
+                                    minimumFractionDigits: 4,
+                                    maximumFractionDigits: 4
+                                }
+                            )
+                        }
+                    </div>
+                </form>
+            </>
+        }
+        const root = ReactDOM.createRoot(document.querySelector('#root'))
+        root.render(<Form />)
+    </script>
+</body>
+</html>
