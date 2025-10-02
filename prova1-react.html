@@ -1,50 +1,56 @@
 <!DOCTYPE html>
-<html lang="pt-br"> //mudei p pt igual pediu
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-
 <body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
 
-    <h1>Cálculo da uma elipse</h1>
-    //entrada dados//
+  <script type="text/babel">
+    function Form() {
 
-    <form>
-            <div>
-                <label>
-                    <span> Medida do raio maior: </span> <br>
-                    <input id="raiomaior" type="number">
-                </label>
-            </div>
-            <div>
-                <label>
-                    <span> Medida do raio menor: </span> <br>
-                    <input id="raiomenor" type="number">
+      const [raioMaior, setRaioMaior] = React.useState(0)
+      const [raioMenor, setRaioMenor] = React.useState(0)
+
+      // Estado derivado
+      const area = Number(raioMaior) * Number(raioMenor) * Math.PI
+
+      return <>
+        <h1>Cálculo da área de uma elipse</h1>
+        <form>
+          <div>
+            <label>
+              <span>Medida do raio maior:</span> <br />
+              <input type="number" onChange={event => setRaioMaior(event.target.value)} />
             </label>
-        </div>
-        <div><strong>Resul: </strong></div> 
-        <div id="resultado"></div>
-    </form>
-
-    <script> 
-
-
-        function onChange() {
-            const raioMaior = document.getElementById('raiomaior').value
-            const raioMenor = document.getElementById('raiomenor').value
-
-            if (raioMaior && raioMenor) { //calcula se os dois tiver digitados
-                const area = Number(raioMaior) * Number(raioMenor) *Math.PI //math como pedido n aprova
-                document.getElementById('resultado').innerText = area
+          </div>
+          <div>
+            <label>
+              <span>Medida do raio menor:</span> <br />
+              <input type="number" onChange={event => setRaioMenor(event.target.value)} />
+            </label>
+          </div>
+          <div>
+            { 
+              area.toLocaleString('pt-br', { 
+                minimumFractionDigits: 4, 
+                maximumFractionDigits: 4 
+              })
             }
-        }
+          </div>
+        </form>
+      </>
+    }
 
-//auqi me confundo segui como estava
-        document.getElementById('raiomaior').addEventListener('input', onChange)
-         document.getElementById('raiomenor').addEventListener('input', onChange)
-    </script>
-
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<Form />)
+  </script>
+  
 </body>
 </html>
