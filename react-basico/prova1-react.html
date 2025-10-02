@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script> 
  
     <div id="root"></div>
- 
+    <!-- comentário no espaço html tem que ter essa tag  e dentro do jsx tem que ter {/* */}-->
     <script type = "text/babel"> 
 
     /* 'const' no lugar de 'function'. Com React quem cria o formulário é o próprio javascript */
@@ -30,6 +30,7 @@
             const raioMaior = Number(raioMaiorRef.current.value)
             const raioMenor = Number(raioMenorRef.current.value)
             const area = Number((raioMaior) * (raioMenor) * (Math.PI).toFixed(4))
+             //CORREÇÃO DA PROVA: Não precisava do toFixed por causa da função toLocaleString()
 
             areaRef.current.textContent = area.toLocaleString ( //Usando a função toLocalString() do JavaScript para exibir o resultado com a formatação desejada
                 'pt-br',{                                        //máximo e mínimo de números permitidos para entrada  
