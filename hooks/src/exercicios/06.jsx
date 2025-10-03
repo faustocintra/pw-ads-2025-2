@@ -4,7 +4,7 @@ import * as React from 'react'
 // PokemonInfoFallback: o que é exibido enquanto as informações do pokémon
 // são carregadas
 // PokemonDataView: o componente usado para exibir as informações do pokémon
-import {PokemonForm} from '../pokemon'
+import {PokemonForm} from '../../pokemon'
 
 function PokemonInfo({pokemonName}) {
   // 🐨 crie o estado para o pokémon (null)
