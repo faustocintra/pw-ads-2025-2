@@ -15,7 +15,7 @@ function Greeting({initialName = ''}) {
   return (
     <div>
       <form>
-        <label htmlFor="name">Name: </label>
+        <label htmlFor="name">Nome: </label>
         <input value={name} onChange={handleChange} id="name" />
       </form>
       {name ? <strong>Olá {name}</strong> : 'Por favor, informe seu nome'}
