@@ -36,7 +36,7 @@ function Display({name}) {
    return <div>{`Hey ${name}, you are great!`}</div>
 }
 
-function App() {
+function Exercicio03() {
   // 🐨 adicione um useState para o animal
   const [name, setName] = React.useState('')
   return (
@@ -49,5 +49,5 @@ function App() {
     </form>
   )
 }
-
-export default App
+//como fazer a comunicação de componentes que por padrão um não sabe o conteúdo do outro
+export default Exercicio03
