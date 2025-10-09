@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Exercicio01 from './01'
 
 function Name({name, onNameChange}) {
   return (
@@ -36,7 +37,7 @@ function Display({name}) {
    return <div>{`Hey ${name}, you are great!`}</div>
 }
 
-function App() {
+function Exercicio03() {
   // 🐨 adicione um useState para o animal
   const [name, setName] = React.useState('')
   return (
@@ -50,4 +51,4 @@ function App() {
   )
 }
 
-export default App
+export default Exercicio03
