@@ -46,6 +46,8 @@ const status = calculateStatus(winner, squares, nextValue)
     setSquares(Array(9).fill(null))
   }
 
+  <div></div>
+
   function renderSquare(i) {
     return (
       <button className="square" onClick={() => selectSquare(i)}>
