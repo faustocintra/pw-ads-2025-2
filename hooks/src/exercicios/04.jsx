@@ -56,7 +56,7 @@ function Board() {
 
   // Salva o estado do jogo a cada jogada
   React.useEffect(() => {
-    // JSON.stringify() converte um objeto (que pode ser um vetor) em string
+    // JSON.stringify converte um objeto (que pode ser um vetor) em string
     window.localStorage.setItem('squares', JSON.stringify(squares))    
   }, [squares])
 
