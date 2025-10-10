@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './home'
 import Exercicio01 from './exercicios/01'
 import Exercicio02 from './exercicios/02'
+import Exercicio03 from './exercicios/03'
+import Exercicio04 from './exercicios/04'
 
 function App() {
   return (
@@ -22,6 +24,12 @@ function App() {
           <li>
             <Link to="/exercicio02">Exercício 02</Link>
           </li>
+          <li>
+            <Link to="/exercicio03">Exercício 03</Link>
+          </li>
+          <li>
+            <Link to="/exercicio04">Exercício 04</Link>
+          </li>
         </ul>
         <hr />
         <Routes>
@@ -29,6 +37,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/exercicio01' element={<Exercicio01 />} />
           <Route path='/exercicio02' element={<Exercicio02 />} />
+          <Route path='/exercicio03' element={<Exercicio03 />} />
+          <Route path='/exercicio04' element={<Exercicio04 />} />
         </Routes>
       </BrowserRouter>
     </>
