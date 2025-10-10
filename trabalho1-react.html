@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin=""></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin=""></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class FormSoma extends React.Component{
+            constructor(){
+                super()
+                this.state = {num1:0, num2:0, soma:0}
+            }
+
+            handleChange1 = event => {
+                this.setState({num1:Number(event.target.value)})
+            }
+
+            handleChange2 = event => {
+                this.setState({num2:Number(event.target.value)})
+            }
+
+            render(){
+                return (
+                    <form>
+                        <div>
+                            <label htmlFor="num1">Primeiro número:</label><br />
+                            <input id="num1" type="number" value={this.state.num1} onChange={this.handleChange1} />
+                        </div>
+                        <div>
+                            <label htmlFor="num2">Segundo número:</label><br />
+                            <input id="num2" type="number" value={this.state.num2} onChange={this.handleChange2} />
+                        </div>
+                        <div>Soma: {this.state.num1+this.state.num2}</div>
+                    </form>
+                )
+            }
+        }
+    
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<FormSoma />)
+    
+      </script>
+</body>
+</html>
