@@ -1,8 +1,15 @@
 import * as React from 'react'
 
+/*posso colocar vários valores dentro de uma variável criando um vetor, 
+  mas a função set da variável de estado só consegue atualizar a variável por inteiro.
+  Em um vetor isso prejudica, por isso faz a cópia do estado atual, 
+  altera a cópia e sobrescreve a original com a cópia modificada.*/
+
 function Board() {
   // 🐨 squares é o estado para este componente. Adicione useState para squares
-  const squares = Array(9).fill(null)
+  //const squares = Array(9).fill(null) ESTA É UMA VARIÁVEL COMUM
+  
+  const [squares, setSquares] = React.useState(Array(9).fill(null))
 
   // 🐨 Precisaremos dos seguintes itens de estados derivados:
   // - nextValue ('X' ou 'O')
@@ -10,6 +17,10 @@ function Board() {
   // - status (`Vencedor: ${winner}`, `Deu velha!`, or `Próximo jogador: ${nextValue}`)
   // 💰 Os respectivos cálculos já estão prontos. Basta usar os utilitários 
   // mais abaixo no código para criar essas variáveis
+
+  const nextValue = calculateNextValue(squares)// calcula de quem é a vez
+  const winner = calculateWinner(squares) //a cada jogada, verifica se tem trinca
+  const status = calculateStatus(winner, squares, nextValue) // situação do jogo
 
   // Esta é a função que o manipulador de clique no quadrado irá chamar. `square`
   // deve ser um índice. Portanto, se você clicar sobre o quadrado central, o
@@ -26,17 +37,20 @@ function Board() {
     // em produção.
     //
     // 🐨 faça uma cópia da matriz dos quadrados
-    // 💰 `[...squares]` é do que você precisa!)
+    // 💰 espalhamento `[...squares]` é do que você precisa!) -> desmonta e monta igual com outro nome e não é alterado quando o original sofre mudança
+    const squaresCopy = [...squares]
     
     // 🐨 ajuste o valor do quadrado que foi selecionado
     // 💰 `squaresCopy[square] = nextValue`
+    squaresCopy[square] = nextValue 
     
     // 🐨 atribua a cópia à matriz dos quadrados
+    setSquares(squaresCopy)
   }
 
-  function restart() {
+  function restart() { //para reiniciar o jogo limpando o tabuleiro
     // 🐨 volte os quadrados ao estado inicial
-    // 💰 `Array(9).fill(null)` é do que você precisa!
+    setSquares(Array(9).fill(null))
   }
 
   function renderSquare(i) {
@@ -47,10 +61,16 @@ function Board() {
     )
   }
 
+    //Salva o estado do jogo a cada jogada (sempre que a variável squares for alterada)
+    // esqueleto do userEffect React.useEffect(()=>{},[]) arrow function vazia e o vetor de dependência
+    React.useEffect(()=>{
+      window.localStorage.setItem('squares', JSON.stringify(squares)),
+      [squares]}) 
+      //JSON.stringify converte um objeto (que pode ser um vetor) em string
   return (
     <div>
       {/* 🐨 coloque o status na div abaixo */}
-      <div className="status"></div>
+      <div className="status">{status}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
@@ -70,6 +90,9 @@ function Board() {
         restart
       </button>
       <hr />
+      <div style={{fontFamily: 'monospace'}}> {/*div acrescentada para mostrar as variáveis durante o jogo*/}
+        {JSON.stringify(squares)}
+      </div>
     </div>
   )
 }
@@ -92,7 +115,7 @@ function calculateStatus(winner, squares, nextValue) {
     : `Próximo jogador: ${nextValue}`
 }
 
-function calculateNextValue(squares) {
+function calculateNextValue(squares) { //estado derivado
   return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O'
 }
 
