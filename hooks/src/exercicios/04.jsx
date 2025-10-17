@@ -3,7 +3,15 @@ import * as React from 'react'
 function Board() {
   // 🐨 squares é o estado para este componente. Adicione useState para squares
   //const squares = Array(9).fill(null)
-  const [squares, setSquares] = React.useState(Array(9).fill(null))
+  //const [squares, setSquares] = React.useState(Array(9).fill(null))
+
+  // Restaurando o estado salvo no local storage, caso haja
+  // Colocamos a leitura do estado dentro de uma função para implementar
+  // "lazy intializing"
+  const [squares, setSquares] = React.useState(
+    // JSON.parse ~> lê uma string e tenta converter para objeto
+    () => JSON.parse(window.localStorage.getItem('squares')) ?? Array(9).fill(null)
+  )
 
   // 🐨 Precisaremos dos seguintes itens de estados derivados:
   // - nextValue ('X' ou 'O')
@@ -56,7 +64,10 @@ function Board() {
   }
 
   // Salva o estado do jogo a cada jogada
-  React.useEffect(() => {window.localStorage.setItem('squares', squares)}, [squares])
+  React.useEffect(() => {
+    // JSON.stringify converte um objeto (que pode ser um vetor) em string
+    window.localStorage.setItem('squares', JSON.stringify(squares))
+  }, [squares])
 
   return (
     <div>
@@ -81,7 +92,7 @@ function Board() {
         restart
       </button>
       <hr />
-      <div style={{fontFamily: 'monospace'}}>
+      <div style={{ fontFamily: 'monospace' }}>
         {JSON.stringify(squares)}
       </div>
     </div>
