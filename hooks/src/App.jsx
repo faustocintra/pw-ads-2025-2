@@ -5,6 +5,7 @@ import Exercicio02 from './exercicios/02.jsx'
 import Exercicio03 from './exercicios/03.jsx'
 import Exercicio04 from './exercicios/04.jsx'
 import Exercicio05 from './exercicios/05.jsx'
+import Exercicio06 from './exercicios/06.jsx'
 
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
 
@@ -23,6 +24,7 @@ function App() {
           <li> <Link to="/03">Exercício 03</Link> </li>
           <li> <Link to="/04">Exercício 04</Link> </li>
           <li> <Link to="/05">Exercício 05</Link> </li>
+          <li> <Link to="/06">Exercício 06</Link> </li>
         </ul>
         
         <hr />
@@ -35,6 +37,7 @@ function App() {
           <Route path="/03" element={<Exercicio03 />} />
           <Route path="/04" element={<Exercicio04 />} />
           <Route path="/05" element={<Exercicio05 />} />
+          <Route path="/06" element={<Exercicio06 />} />
         </Routes>
       </BrowserRouter>
     </>
