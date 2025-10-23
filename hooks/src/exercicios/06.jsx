@@ -92,8 +92,10 @@ function PokemonInfo({pokemonName}) {
       case 'IDLE':
         return 'Informe um pokemon'
       case 'PENDING':
-        return <PokemonInfoFallback name={pokemonName} />  
-        default:    // 'ERROR'
+        return <PokemonInfoFallback name={pokemonName} /> 
+      case 'RESOLVED':
+        return <PokemonDataView pokemon={pokemon} />  
+      default:    // 'ERROR'
         return <div role="alert">
           Ocorreu um erro: <pre style={{whiteSpace: 'normal'}}> {error.message} </pre>
         </div>
