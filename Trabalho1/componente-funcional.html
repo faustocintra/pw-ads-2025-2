@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trabalho 1</title>
+  <title>Trabalho 1 - André</title>
 </head>
+
 <body>
-  
+
   <div id="root"></div>
 
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
 
     /*UTILIZANDO COMPONENTES FUNCIONAIS*/
     const FormSoma = () => {
 
-        const [num1, setNum1] = React.useState(0)
-        const [num2, setNum2] = React.useState(0)
-        const [soma, setSoma] = React.useState(0)
+      const [num1, setNum1] = React.useState(0)
+      const [num2, setNum2] = React.useState(0)
+      const [soma, setSoma] = React.useState(0)
 
-        React.useEffect(() => {
-            setSoma(isNaN(num1) || isNaN(num2) ? '' : num1 + num2)
-        }, [num1, num2])
-                
-        const handleChange1 = event => setNum1(Number(event.target.value))
-            
-        const handleChange2 = event => setNum2(Number(event.target.value))
-                
-        return (
-            <form>
-                <div>
-                    <label htmlFor="num1">Primeiro número:</label><br />
-                    <input id="num1" type="number" value={num1} onChange={handleChange1} />
-                </div>
-                <div>
-                    <label htmlFor="num2">Segundo número:</label><br />
-                    <input id="num2" type="number" value={num2} onChange={handleChange2} />
-                </div>
-                <div>Soma: {soma}</div>
-            </form>
-        )
+      React.useEffect(() => {
+        setSoma(isNaN(num1) || isNaN(num2) ? '' : num1 + num2)
+      }, [num1, num2])
+
+      const handleChange1 = event => setNum1(Number(event.target.value))
+
+      const handleChange2 = event => setNum2(Number(event.target.value))
+
+      return (
+        <form>
+          <div>
+            <label htmlFor="num1">Primeiro número:</label><br />
+            <input id="num1" type="number" value={num1} onChange={handleChange1} />
+          </div>
+          <div>
+            <label htmlFor="num2">Segundo número:</label><br />
+            <input id="num2" type="number" value={num2} onChange={handleChange2} />
+          </div>
+          <div>Soma: {soma}</div>
+        </form>
+      )
 
     }
     const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -51,76 +53,43 @@
 
     {/* UTILIZANDO COMPONENTES DE CLASSE:
        
-      class FormSoma extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          num1: 0,
-          num2: 0,
-          soma: 0
+      class FormSoma extends React.Component{
+            constructor(){
+                super()
+                this.state = {num1:0, num2:0, soma:0}
+            }
+
+            handleChange1 = event => {
+                this.setState({num1:Number(event.target.value)})
+            }
+
+            handleChange2 = event => {
+                this.setState({num2:Number(event.target.value)})
+            }
+
+            render(){
+                return (
+                    <form>
+                        <div>
+                            <label htmlFor="num1">Primeiro número:</label><br />
+                            <input id="num1" type="number" value={this.state.num1} onChange={this.handleChange1} />
+                        </div>
+                        <div>
+                            <label htmlFor="num2">Segundo número:</label><br />
+                            <input id="num2" type="number" value={this.state.num2} onChange={this.handleChange2} />
+                        </div>
+                        <div>Soma: {this.state.num1+this.state.num2}</div>
+                    </form>
+                )
+            }
         }
-        this.handleChange1 = this.handleChange1.bind(this)
-        this.handleChange2 = this.handleChange2.bind(this)
-      }
-
-      componentDidMount() {
-        this.atualizarSoma()
-      }
-
-      componentDidUpdate(prevProps, prevState) {
-        if (prevState.num1 !== this.state.num1 || prevState.num2 !== this.state.num2) {
-          this.atualizarSoma()
-        }
-      }
-
-      atualizarSoma() {
-        const { num1, num2 } = this.state
-        const soma = isNaN(num1) || isNaN(num2) ? 'Insira um nº' : num1 + num2
-        this.setState({ soma })
-      }
-
-      handleChange1(event) {
-        this.setState({ num1: Number(event.target.value) })
-      }
-
-      handleChange2(event) {
-        this.setState({ num2: Number(event.target.value) })
-      }
-
-      render() {
-        return (
-          <form>
-            <div>
-              <label htmlFor="num1">Primeiro número:</label><br />
-              <input
-                id="num1"
-                type="number"
-                value={this.state.num1}
-                onChange={this.handleChange1}
-              />
-            </div>
-            <div>
-              <label htmlFor="num2">Segundo número:</label><br />
-              <input
-                id="num2"
-                type="number"
-                value={this.state.num2}
-                onChange={this.handleChange2}
-              />
-            </div>
-            <div>
-              Soma: {this.state.soma}
-            </div>
-          </form>
-        )
-      }
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById('root'))
-    root.render(<FormSoma />)
+    
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<FormSoma />)
 
       */}
   </script>
 
 </body>
+
 </html>
