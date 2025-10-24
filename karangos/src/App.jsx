@@ -1,12 +1,18 @@
 // import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 
+
+import HeaderBar from './ui/HeaderBar'
+import CssBaseline from '@mui/material/CssBaseline'
+
+
 function App() {
  return (
    <>
-      <BrowserRouter>
-    
-      </BrowserRouter>
+     <CssBaseline />
+     <BrowserRouter>
+       <HeaderBar />
+     </BrowserRouter>
    </>
  )
 }
