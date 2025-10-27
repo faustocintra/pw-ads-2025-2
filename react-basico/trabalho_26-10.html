@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalho: Componente de Classe - Soma</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    // Criando o componente de classe que vai fazer a soma
+    class FormSomaClasse extends React.Component {
+
+      // Aqui definimos o estado inicial do componente
+      state = {
+        num1: 0,   // Armazena o primeiro número digitado
+        num2: 0,   // Armazena o segundo número digitado
+        soma: 0    // Armazena o resultado da soma
+      }
+
+      // Função para atualizar o primeiro número
+      handleChange1 = (event) => {
+        const novoNum1 = Number(event.target.value) // Pegando o valor do input e garantindo que seja número
+        // Atualizando o estado: mudamos num1 e recalculamos a soma usando o num2 atual
+        this.setState({ num1: novoNum1, soma: novoNum1 + this.state.num2 })
+      }
+
+      // Função para atualizar o segundo número
+      handleChange2 = (event) => {
+        const novoNum2 = Number(event.target.value) // Pegando o valor do input e convertendo para número
+        // Atualizando o estado: mudamos num2 e recalculamos a soma usando o num1 atual
+        this.setState({ num2: novoNum2, soma: this.state.num1 + novoNum2 })
+      }
+
+      // O método render é obrigatório em qualquer componente de classe
+      render() {
+        return (
+          <form>
+            <div>
+              {/* Input do primeiro número */}
+              <label>Primeiro número:</label><br />
+              <input
+                type="number"
+                value={this.state.num1}        // Valor vem do state
+                onChange={this.handleChange1} // Chama função quando muda
+              />
+            </div>
+
+            <div>
+              {/* Input do segundo número */}
+              <label>Segundo número:</label><br />
+              <input
+                type="number"
+                value={this.state.num2}        // Valor vem do state
+                onChange={this.handleChange2} // Chama função quando muda
+              />
+            </div>
+
+            <div>
+              {/* Exibindo a soma */}
+              Soma: {this.state.soma}
+            </div>
+          </form>
+        )
+      }
+    }
+
+     // querySelect('#root') é equivalente a getElementById('root')
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<FormSomaClasse  />)
+  </script>
+</body>
+</html>
