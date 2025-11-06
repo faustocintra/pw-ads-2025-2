@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    // Componente de Classe
+    class FormSoma extends React.Component {
+      // Inicializa estado e define valores iniciais
+      constructor(props){
+        super(props)
+        this.state = { num1: 0, num2: 0 }
+      }
+
+      handleChange1 = e => this.setState({ num1: Number(e.target.value) })
+      handleChange2 = e => this.setState({ num2: Number(e.target.value) })
+
+      // Recebendo valores e calculando a soma
+      render() {
+        const soma = this.state.num1 + this.state.num2
+        return (
+          <form>
+            <div>
+              {/* Recebe valor para o primeiro número */}
+              <label>Primeiro número: </label><br/>
+              <input
+                id="num1"
+                type="number"
+                value={this.state.num1}
+                onChange={this.handleChange1}
+              />
+            </div>
+
+            <div>
+              {/* Recebe valor para o segundo número */}
+              <label>Segundo número: </label><br/>
+              <input
+                id="num2"
+                type="number"
+                value={this.state.num2}
+                onChange={this.handleChange2}
+              />
+            </div>
+            {/* Exibe resultado da soma */}
+            <div>Soma: {isNaN(soma) ? '' : soma}</div>
+          </form>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<FormSoma />)
+
+  </script>
+
+</body>
+</html>
