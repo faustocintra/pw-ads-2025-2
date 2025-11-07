@@ -5,6 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './ui/theme'
 import FooterBar from './ui/FooterBar'
+import AppRoutes from './routes/AppRoutes'
+import Box from '@mui/material/Box'
+
 
 function App() {
   return (
@@ -13,6 +16,10 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <HeaderBar />
+        {/* Dentro da prop "sx", "m" significa "margin" */}
+        <Box id="innerRoot" sx={{ m: '48px 24px' }}></Box>
+          <AppRoutes />
+        </Box>
         <FooterBar />
       </BrowserRouter>
       </ThemeProvider>

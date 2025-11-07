@@ -1,0 +1,13 @@
+// http://localhost:5173/cars
+
+import React from 'react'
+import Typography from '@mui/material/Typography'
+
+
+export default function CarsList() {
+ return <>
+   <Typography variant="h1">
+     Listagem de veículos
+   </Typography>
+ </>
+}
