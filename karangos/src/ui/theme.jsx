@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles'
 import { yellow, pink } from '@mui/material/colors'
-import { ptBR } from '@mui/x-data-grid/locales'
 
 
 const theme = createTheme({
@@ -11,6 +10,12 @@ const theme = createTheme({
    },
    secondary: {
      main: pink[500]
+   }
+ },
+ typography: {
+   h1: {
+     fontSize: '2.5rem',
+     fontWeight: 'bold'
    }
  }
 })
