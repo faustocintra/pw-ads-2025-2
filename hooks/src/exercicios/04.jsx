@@ -1,4 +1,5 @@
 import * as React from 'react'
+<<<<<<< HEAD
  
 function Board() {
   // 🐨 squares é o estado para este componente. Adicione useState para squares
@@ -12,16 +13,29 @@ function Board() {
     //JSON.parse -> Lê uma string e converte para um objeto
     () => JSON.parse(window.localStorage.getItem('squares')) || Array(9).fill(null)
   )
+=======
+
+function Board() {
+  // 🐨 squares é o estado para este componente. Adicione useState para squares
+  const squares = Array(9).fill(null)
+
+>>>>>>> main
   // 🐨 Precisaremos dos seguintes itens de estados derivados:
   // - nextValue ('X' ou 'O')
   // - winner ('X', 'O', ou null)
   // - status (`Vencedor: ${winner}`, `Deu velha!`, or `Próximo jogador: ${nextValue}`)
+<<<<<<< HEAD
   // 💰 Os respectivos cálculos já estão prontos. Basta usar os utilitários
   // mais abaixo no código para criar essas variáveis
   const nextValue = calculateNextValue(squares)
   const winner = calculateWinner(squares)
   const status = calculateStatus(winner, squares, nextValue)
  
+=======
+  // 💰 Os respectivos cálculos já estão prontos. Basta usar os utilitários 
+  // mais abaixo no código para criar essas variáveis
+
+>>>>>>> main
   // Esta é a função que o manipulador de clique no quadrado irá chamar. `square`
   // deve ser um índice. Portanto, se você clicar sobre o quadrado central, o
   // valor será `4`.
@@ -31,13 +45,18 @@ function Board() {
     // que já foi clicado), retorne prematuramente, assim não precisaremos
     // fazer quaisquer mudanças de estado
     if(winner || squares[square]) return
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> main
     // 🦉 Tipicamente, é uma má ideia mudar ou alterar diretamente um estado
     // em React. Isso pode levar a bugs sutis que podem facilmente ir parar
     // em produção.
     //
     // 🐨 faça uma cópia da matriz dos quadrados
     // 💰 `[...squares]` é do que você precisa!)
+<<<<<<< HEAD
     const squaresCopy = [...squares]
  
     // 🐨 ajuste o valor do quadrado que foi selecionado
@@ -54,6 +73,20 @@ function Board() {
     setSquares(Array(9).fill(null))
   }
  
+=======
+    
+    // 🐨 ajuste o valor do quadrado que foi selecionado
+    // 💰 `squaresCopy[square] = nextValue`
+    
+    // 🐨 atribua a cópia à matriz dos quadrados
+  }
+
+  function restart() {
+    // 🐨 volte os quadrados ao estado inicial
+    // 💰 `Array(9).fill(null)` é do que você precisa!
+  }
+
+>>>>>>> main
   function renderSquare(i) {
     return (
       <button className="square" onClick={() => selectSquare(i)}>
@@ -61,6 +94,7 @@ function Board() {
       </button>
     )
   }
+<<<<<<< HEAD
  
   //Salva o estado do jogo a cada jogada
   //JSON STRINGIFY CONVERTE UM OBJETO ( QUE PODE SER UM VETOR ) EM UMA STRING
@@ -71,6 +105,13 @@ function Board() {
     <div>
       {/* 🐨 coloque o status na div abaixo */}
       <div className="status">{status}</div>
+=======
+
+  return (
+    <div>
+      {/* 🐨 coloque o status na div abaixo */}
+      <div className="status"></div>
+>>>>>>> main
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
@@ -90,6 +131,7 @@ function Board() {
         restart
       </button>
       <hr />
+<<<<<<< HEAD
    
       <div style={{ fontFamily: 'monospace' }}>
         {JSON.stringify(squares)}
@@ -98,6 +140,12 @@ function Board() {
   )
 }
  
+=======
+    </div>
+  )
+}
+
+>>>>>>> main
 function Game() {
   return (
     <div className="game">
@@ -107,7 +155,11 @@ function Game() {
     </div>
   )
 }
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> main
 function calculateStatus(winner, squares, nextValue) {
   return winner
     ? `Vencedor: ${winner}`
@@ -115,11 +167,19 @@ function calculateStatus(winner, squares, nextValue) {
     ? `Deu velha!`
     : `Próximo jogador: ${nextValue}`
 }
+<<<<<<< HEAD
  
 function calculateNextValue(squares) {
   return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O'
 }
  
+=======
+
+function calculateNextValue(squares) {
+  return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O'
+}
+
+>>>>>>> main
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -139,9 +199,17 @@ function calculateWinner(squares) {
   }
   return null
 }
+<<<<<<< HEAD
  
 function Exercicio04() {
   return <Game />
 }
  
+=======
+
+function Exercicio04() {
+  return <Game />
+}
+
+>>>>>>> main
 export default Exercicio04

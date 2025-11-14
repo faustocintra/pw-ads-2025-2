@@ -1,4 +1,5 @@
 import * as React from 'react'
+<<<<<<< HEAD
  
 function Greeting({initialName = ''}) {
   // 🐨 inicialize o estado como o valor do localStorage
@@ -22,10 +23,18 @@ function Greeting({initialName = ''}) {
     //}
 
     const [count, seCount] = React.useState(0)
+=======
+
+function Greeting({initialName = ''}) {
+  // 🐨 inicialize o estado como o valor do localStorage
+  // 💰 window.localStorage.getItem('name') ?? initialName
+  const [name, setName] = React.useState(initialName)
+>>>>>>> main
 
   // 🐨 Aqui é onde usamos `React.useEffect`.
   // A função deve armazenar `name` no localStorage.
   // 💰 window.localStorage.setItem('name', name)
+<<<<<<< HEAD
  
   React.useEffect(() => {
     window.localStorage.setItem('name', name)
@@ -34,6 +43,9 @@ function Greeting({initialName = ''}) {
   // este useEffect será executado apaenas quando o valor da 
   // variável de estado "name" for alterado
  
+=======
+
+>>>>>>> main
   function handleChange(event) {
     setName(event.target.value)
   }
@@ -44,6 +56,7 @@ function Greeting({initialName = ''}) {
         <input value={name} onChange={handleChange} id="name" />
       </form>
       {name ? <strong>Olá {name}</strong> : 'Por favor, informe seu nome'}
+<<<<<<< HEAD
       <br /> <button onClick={() => seCount(count+1)}> 
       Contagem: {count}
       </button>
@@ -56,3 +69,14 @@ function Exercicio02() {
 }
  
 export default Exercicio02
+=======
+    </div>
+  )
+}
+
+function App() {
+  return <Greeting />
+}
+
+export default App
+>>>>>>> main

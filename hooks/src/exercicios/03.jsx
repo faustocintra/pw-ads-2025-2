@@ -1,6 +1,10 @@
 import * as React from 'react'
+<<<<<<< HEAD
 import Exercicio01 from './01'
  
+=======
+
+>>>>>>> main
 function Name({name, onNameChange}) {
   return (
     <div>
@@ -9,21 +13,34 @@ function Name({name, onNameChange}) {
     </div>
   )
 }
+<<<<<<< HEAD
  
 // 🐨 aceite as props `animal` e `onAnimalChange` neste componente
 function FavoriteAnimal({animal, anAnimalChange}) {
   // 💣 delete this, it's now managed by the App
+=======
+
+// 🐨 aceite as props `animal` e `onAnimalChange` neste componente
+function FavoriteAnimal() {
+  // 💣 delete this, it's now managed by the App
+  const [animal, setAnimal] = React.useState('')
+>>>>>>> main
   return (
     <div>
       <label htmlFor="animal">Favorite Animal: </label>
       <input
         id="animal"
         value={animal}
+<<<<<<< HEAD
         onChange={anAnimalChange}
+=======
+        onChange={event => setAnimal(event.target.value)}
+>>>>>>> main
       />
     </div>
   )
 }
+<<<<<<< HEAD
  
 // 🐨 descomente isso
 function Display({name, animal}) {
@@ -40,10 +57,28 @@ function Exercicio03() {
   // 🐨 adicione um useState para o animal
   const [name, setName] = React.useState('')
   const [animal, setAnimal] = React.useState('')
+=======
+
+// 🐨 descomente isso
+// function Display({name, animal}) {
+//   return <div>{`Olá ${name}, seu animal favorito é: ${animal}!`}</div>
+// }
+
+
+// 💣 exclua esse componente e use o novo
+function Display({name}) {
+   return <div>{`Hey ${name}, you are great!`}</div>
+}
+
+function App() {
+  // 🐨 adicione um useState para o animal
+  const [name, setName] = React.useState('')
+>>>>>>> main
   return (
     <form>
       <Name name={name} onNameChange={event => setName(event.target.value)} />
       {/* 🐨 passe o animal e a prop onAnimalChange aqui (similar ao componente Name acima) */}
+<<<<<<< HEAD
       <FavoriteAnimal
       animal={animal}
       anAnimalChange={event => setAnimal(event.target.value)}
@@ -56,3 +91,13 @@ function Exercicio03() {
 }
  
 export default Exercicio03
+=======
+      <FavoriteAnimal />
+      {/* 🐨 passe a prop do animal aqui */}
+      <Display name={name} />
+    </form>
+  )
+}
+
+export default App
+>>>>>>> main

@@ -4,6 +4,7 @@ import * as React from 'react'
 // PokemonInfoFallback: o que é exibido enquanto as informações do pokémon
 // são carregadas
 // PokemonDataView: o componente usado para exibir as informações do pokémon
+<<<<<<< HEAD
 import {PokemonForm, fetchPokemon, PokemonInfoFallback, PokemonDataView} from '../pokemon'
 
 function PokemonInfo({pokemonName}) {
@@ -71,11 +72,34 @@ function PokemonInfo({pokemonName}) {
     console.count('ATUALIZOU')
   })
 
+=======
+import {PokemonForm} from '../pokemon'
+
+function PokemonInfo({pokemonName}) {
+  // 🐨 crie o estado para o pokémon (null)
+
+  // 🐨 crie React.useEffect de modo a ser chamado sempre que pokemonName mudar.
+  // 💰 NÃO SE ESQUEÇA DO VETOR DE DEPENDÊNCIAS!
+
+  // 💰 se pokemonName é falso (ou uma string vazia) não se preocupe em fazer 
+  // a requisição (retorne precocemente).
+
+  // 🐨 antes de chamar `fetchPokemon`, limpe o estado atual do pokemon
+  // ajustando-o para null.
+
+  // (Isso é para habilitar o estado de carregamento ao alternar entre diferentes
+  // pokémon.)
+  // 💰 Use a função `fetchPokemon` para buscar um pokémon pelo seu nome:
+  //   fetchPokemon('Pikachu').then(
+  //     pokemonData => {/* atualize todos os estados aqui */},
+  //   )
+>>>>>>> main
   // 🐨 return the following things based on the `pokemon` state and `pokemonName` prop:
   // 🐨 retorne o seguinte baseado nos estados `pokemon` e `pokemonName`:
   //   1. não há pokemonName: 'Informe um pokémon'
   //   2. tem pokemonName mas não pokemon: <PokemonInfoFallback name={pokemonName} />
   //   3. tem pokemon: <PokemonDataView pokemon={pokemon} />
+<<<<<<< HEAD
   switch(status) {
     case 'IDLE':
       return 'Informe um pokémon'
@@ -96,6 +120,11 @@ function PokemonInfo({pokemonName}) {
   // if(pokemonName && !pokemon) return <PokemonInfoFallback name={pokemonName} />
   // else return <PokemonDataView pokemon={pokemon} />
   
+=======
+
+  // 💣 remova isso
+  return 'TODO'
+>>>>>>> main
 }
 
 function Exercicio06() {

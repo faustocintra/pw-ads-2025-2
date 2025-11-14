@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 
+<<<<<<< HEAD
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 
 import Home from './Home'
@@ -39,6 +40,13 @@ function App() {
           <Route path="/06" element={<Exercicio06 />} />
         </Routes>
       </BrowserRouter>
+=======
+function App() {
+ 
+  return (
+    <>
+    
+>>>>>>> main
     </>
   )
 }

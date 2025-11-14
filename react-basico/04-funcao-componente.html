@@ -41,12 +41,20 @@
       return <div className="sauda"> {msg}, {nome}! </div>
     }
 
+<<<<<<< HEAD
     // Criando um componente a partir de uma chamada explícita
     // à função
     const saudacao1 = Saudacao({ msg: 'Bom dia', nome: 'Dona Clementina' })
 
     // Criando um componente a partir da função usando sintaxe JSX
     const saudacao2 = <Saudacao nome="Seu Bita" msg="O sol já nasceu lá na fazendinha" />
+=======
+    // Criando um componente a partir de uma chamada explícita à função
+    const saudacao1 = Saudacao({ msg: 'Bom dia', nome: 'Dona Clementina' })
+
+    // Crianco um componente a partir da função usando sintaxe JSX 
+    const saudacao2 = <Saudacao nome="Seu Bita" msg="O sol já nasceu lá na fazendinha"/>
+>>>>>>> main
 
     // Container em JSX
     // <></> é um pseudoelemento do React chamado FRAGMENT. Ele permite
@@ -56,13 +64,22 @@
       <>
         {saudacao1}
         {saudacao2}
+<<<<<<< HEAD
         {/* Criação de um componente diretamente no container */}
         <Saudacao msg="Boa tarde" nome="Senhor Valdemar" />
+=======
+        {/*Criação de um componente diratamente no container */}
+        <Saudacao msg="Boa tarde" nome="Senhor Valdemar "/>
+>>>>>>> main
       </>
 
     const root = ReactDOM.createRoot(document.getElementById('root'))
 
     root.render(container)
+<<<<<<< HEAD
   </script>
 </body>
 </html>
+=======
+  </script>
+>>>>>>> main
