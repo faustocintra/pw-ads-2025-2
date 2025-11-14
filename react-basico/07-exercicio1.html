@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .cor1 {
+      color: darkblue;
+      font-weight: bold;
+      font-family: Verdana, sans-serif;
+      margin-bottom: 8px;
+    }
+    .cor2 {
+      color: darkred;
+      font-style: italic;
+      font-family: Georgia, serif;
+      margin-bottom: 8px;
+    }
+    .idade {
+      background: lightgray;
+      border: 2px solid gray;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      font-family: Consolas, monospace;
+      width: fit-content;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    /*
+      EXERCÍCIO DE FIXAÇÃO nº 1
+      Componente que exibe nome completo, data de nascimento
+      e a idade ao final de 2025.
+    */
+    function Pessoa({nome, sobrenome, dia, mes, ano}) {
+      // Cálculo simples da idade ao final de 2025
+      const idade = 2025 - ano
+      return (
+        <>
+          <p className="cor1">{nome} {sobrenome}</p>
+          <p className="cor2">{dia}/{mes}/{ano}</p>
+          <div className="idade">
+            Idade ao final de 2025: {idade} anos
+          </div>
+        </>
+      )
+    }
+
+    // Container com alguns exemplos
+    const container =
+      <>
+        <Pessoa nome="Andriele" sobrenome="Bevilaqua" dia={6} mes={4} ano={1989} />
+        <Pessoa nome="Rogério" sobrenome="Gabriel" dia={20} mes={10} ano={1983} />
+      </>
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(container)
+  </script>
+</body>
+</html>
