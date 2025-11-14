@@ -93,9 +93,6 @@ export default function CustomersList() {
        disableRowSelectionOnClick
      />
    </Box>
-   <div>
-     { JSON.stringify(customers) }
-   </div>
  </>
 
 }
