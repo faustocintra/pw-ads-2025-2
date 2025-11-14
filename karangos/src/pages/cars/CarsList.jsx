@@ -10,6 +10,8 @@ export default function CarsList() {
       field: 'brand', 
       headerName: 'Marca - Modelo', 
       width: 200,
+      // renderCell permite customizar como o conteúdo da célula é exibido.
+      // params contém informações da linha (params.row).
       renderCell: (params) => (
         <span>
           {params.row.brand} - {params.row.model}
@@ -30,6 +32,7 @@ export default function CarsList() {
       field: 'imported',
       headerName: 'importado',
       width: 150,
+      // exibe "Sim" se o valor for 'true', ou nada "" se for 'false'
       renderCell: (params) => params.row.imported ? "Sim" : ""
     },
     {
@@ -41,14 +44,16 @@ export default function CarsList() {
      field: 'selling_price',
      headerName: 'Preço de Venda',
      width: 150,
+     // renderCell formata o número como moeda local (BRL)
      renderCell: (params) => {
        if(params.row.selling_price) {
+        // toLocaleString formata o número para o padrão pt-BR como BRL (R$)
          return params.row.selling_price.toLocaleString('pt-BR', {
            style: 'currency',
            currency: 'BRL'
          })
        }
-       return ''
+       return '' // retorna vazio se não houver preço
      }
    }
   ];
