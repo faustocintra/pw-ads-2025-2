@@ -13,10 +13,10 @@ export default function CustomersList() {
     },
     {
       field: 'brandModel',
-      headerName: 'Modelo',
+      headerName: 'Marca e Modelo',
       width: 250,
-      renderCell: (params, value, row) => {
-        return params.value + " " + row.brand
+      renderCell: params => {
+        return params.row.brand + " " + params.row.model
       }
     },
     {
@@ -45,12 +45,18 @@ export default function CustomersList() {
     {
       field: 'selling_price',
       headerName: 'Preço de Venda',
-      width: 150
+      width: 150,
+      valueFormatter: value => {
+        return value.toLocaleString("pt-BR", {style:"currency", currency:"BRL"})
+      }
     },
     {
       field: 'selling_date',
       headerName: 'Data de Venda',
-      width: 150
+      width: 150,
+      valueFormatter: value => {
+        return value ? new Date(value).toLocaleString("pt-BR") : null
+      }
     },
   ]; 
 
@@ -95,7 +101,6 @@ export default function CustomersList() {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
-        renderCell
       />
     </Box>
   </>
