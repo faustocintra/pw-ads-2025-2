@@ -104,8 +104,5 @@ async function loadData() {
        disableRowSelectionOnClick
      />
    </Box>
-   <div>
-     { JSON.stringify(customers) }
-   </div>
  </>
 }
