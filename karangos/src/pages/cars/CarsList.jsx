@@ -6,6 +6,11 @@ import { DataGrid } from '@mui/x-data-grid';
 export default function CarsList() {
 
   const columns = [
+    {
+      field: 'id',
+      headerName: 'Cód.',
+      width: 90
+    },
     { 
       field: 'brand', 
       headerName: 'Marca - Modelo', 
@@ -41,21 +46,36 @@ export default function CarsList() {
       width: 150
     },
     {
-     field: 'selling_price',
-     headerName: 'Preço de Venda',
-     width: 150,
-     // renderCell formata o número como moeda local (BRL)
-     renderCell: (params) => {
-       if(params.row.selling_price) {
-        // toLocaleString formata o número para o padrão pt-BR como BRL (R$)
-         return params.row.selling_price.toLocaleString('pt-BR', {
-           style: 'currency',
-           currency: 'BRL'
-         })
-       }
-       return '' // retorna vazio se não houver preço
-     }
-   }
+      field: 'selling_price',
+      headerName: 'Preço de Venda',
+      width: 150,
+      // renderCell formata o número como moeda local (BRL)
+      renderCell: (params) => {
+        if(params.row.selling_price) {
+          // toLocaleString formata o número para o padrão pt-BR como BRL (R$)
+          return params.row.selling_price.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          })
+        }
+        return '' // retorna vazio se não houver preço
+      }
+    },
+    {
+      field: 'selling_date',
+      headerName: 'Data de Venda',
+      width: 150,
+      // value é o valor bruto vindo do 'field' (ex: "2023-10-27T10:00:00Z").
+      valueFormatter: (value) => {
+        // verifica se o valor não é nulo ou indefinido.
+        if(value) {
+          const date = new Date(value)
+          // formata a data para o padrão local brasileiro (pt-BR), resultando em algo como "dd/mm/aaaa"
+          return date.toLocaleDateString('pt-BR')
+        }
+        return '' // retorna valor vazio se for null
+      }
+    }
   ];
 
   const [cars, setCars] = React.useState([])
